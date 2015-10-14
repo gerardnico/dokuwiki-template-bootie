@@ -85,7 +85,12 @@ include('tpl_header.php')
                 <?php tpl_flush() ?>
                 <?php tpl_includeFile('pageheader.html') ?>
                 <!-- wikipage start $prependTOC=false -->
-                <?php tpl_content($prependTOC = false) ?>
+
+                <!-- Add a p around the content to enable the reader view in Mozilla -->
+                <!-- https://github.com/mozilla/readability -->
+                <p>
+                    <?php tpl_content($prependTOC = false) ?>
+                </p>
                 <!-- wikipage stop -->
                 <?php tpl_includeFile('pagefooter.html') ?>
 
