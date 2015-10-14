@@ -1,0 +1,179 @@
+/*Custom styles for this template
+body > .container {
+    padding: 40px 15px 0;
+}
+*/
+
+/* To center the logo */
+.navbar-header > a:nth-of-type(1) {
+    padding-top: 10px;
+}
+
+/* The header tease */
+.header-tease {
+    background-color: #0275d8;
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+/* Affix for the sidebar */
+.bs-docs-sidebar.affix {
+    position: fixed;
+    top: 20px;
+    width: 263px;
+}
+
+/* In the config page, the label are no wrap with bootstrap */
+/* Very hugely */
+#config__manager td.label label {
+    clear: left;
+    display: block;
+    white-space: normal;
+    color: #000000;
+    font-size: 100%;
+    font-weight: normal;
+    padding-right: 0.8em;
+}
+
+#config__manager fieldset td.value {
+    width: 33em;
+}
+
+#config__manager td.label {
+    padding-bottom: 0.6em;
+    padding-left: 1em;
+    padding-right: 0;
+    padding-top: 0.8em;
+    vertical-align: top;
+    border-bottom-left-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    display: inline;
+    font-size: 100%;
+    font-weight: normal;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+#config__manager fieldset td {
+    text-align: left;
+}
+
+#config__manager td.label span.outkey {
+    background-color: #fff;
+    color: #666;
+    display: block;
+    float: left;
+    font-size: 70%;
+    margin-left: -1em;
+    margin-top: 0em;
+    padding-bottom: 0;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+    padding-top: 0;
+    position: relative;
+    z-index: 1;
+}
+
+#config__manager tr.default .input, #config__manager tr.default input {
+    background-color: #ffffff;
+}
+
+#config__manager tr.default select {
+   background-color: #ffffff;
+}
+
+#config__manager .selectiondefault,
+#config__manager tr.default td.value div.input {
+    background-color: unset;
+}
+
+#config__manager tr.default textarea  {
+    background-color: unset;
+}
+
+#config__manager tr .input {
+    background-color: unset;
+}
+
+/* The fixed top bar */
+body {
+    padding-top: 110px;
+}
+
+/* The edit button */
+div.secedit button {
+    float: right;
+    font-size: 10px;
+}
+
+/* The text area in the edit form */
+textarea {
+    width: 100%;
+}
+
+/* Preview in the edit form */
+div.preview {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #f5f5f5;
+    border-bottom-color: #000;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: #000;
+    border-left-style: dashed;
+    border-left-width: 1px;
+    border-right-color: #000;
+    border-right-style: dashed;
+    border-right-width: 1px;
+    border-top-color: #000;
+    border-top-style: dashed;
+    border-top-width: 1px;
+    margin-bottom: 0;
+    margin-left: 2em;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px;
+}
+
+
+ol.breadcrumb {
+    /*This will clip the left side in mobile device
+    in order to have a fix height on the top bar*/
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* Style */
+    height: 20px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    margin-bottom: 1px;
+    font-size: 0.875em;
+    background-color: unset;
+    color: #9d9d9d;
+}
+
+ol.breadcrumb li a {
+    color: #9d9d9d;
+}
+
+.navbar-inverse {
+    background-image: linear-gradient(135deg, red, red 60%, blue);
+    /*background-image: linear-gradient(to bottom, #3c3c3c 0px, #222 100%);*/
+}
