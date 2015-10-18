@@ -17,14 +17,15 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
 <html lang="<?php echo $conf['lang'] ?>" class="no-js">
 <head>
     <meta charset="utf-8"/>
+
     <title><?php tpl_pagetitle() ?> [<?php echo strip_tags($conf['title']) ?>]</title>
     <script>(function (H) {
             H.className = H.className.replace(/\bno-js\b/, 'js')
         })(document.documentElement)</script>
-    <?php tpl_metaheaders() ?>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
+
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -32,6 +33,11 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Dokuwiki -->
+    <!-- Must be place after the bootstrap link in order to customize bootstrap-->
+    <?php tpl_metaheaders() ?>
+
 </head>
 <body role="document">
 <!--[if lte IE 7 ]>

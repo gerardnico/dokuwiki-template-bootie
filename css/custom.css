@@ -1,30 +1,5 @@
-/*Custom styles for this template
-body > .container {
-    padding: 40px 15px 0;
-}
-*/
+/* Customization of Dokwuki element */
 
-/* To center the logo */
-.navbar-header > a:nth-of-type(1) {
-    padding-top: 10px;
-}
-
-/* The header tease */
-.header-tease {
-    background-color: #0275d8;
-    color: #fff;
-    display: block;
-    font-weight: bold;
-    padding: 15px 20px;
-    text-align: center;
-}
-
-/* Affix for the sidebar */
-.bs-docs-sidebar.affix {
-    position: fixed;
-    top: 20px;
-    width: 263px;
-}
 
 /* In the config page, the label are no wrap with bootstrap */
 /* Very hugely */
@@ -100,10 +75,6 @@ body > .container {
     background-color: unset;
 }
 
-/* The fixed top bar */
-body {
-    padding-top: 110px;
-}
 
 /* The edit button */
 div.secedit button {
@@ -151,29 +122,3 @@ div.preview {
 }
 
 
-ol.breadcrumb {
-    /*This will clip the left side in mobile device
-    in order to have a fix height on the top bar*/
-    overflow: hidden;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    /* Style */
-    height: 20px;
-    padding-bottom: 1px;
-    padding-left: 1px;
-    padding-right: 1px;
-    padding-top: 1px;
-    margin-bottom: 1px;
-    font-size: 0.875em;
-    background-color: unset;
-    color: #9d9d9d;
-}
-
-ol.breadcrumb li a {
-    color: #9d9d9d;
-}
-
-.navbar-inverse {
-    background-image: linear-gradient(135deg, red, red 60%, blue);
-    /*background-image: linear-gradient(to bottom, #3c3c3c 0px, #222 100%);*/
-}
