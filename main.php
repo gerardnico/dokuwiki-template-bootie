@@ -26,6 +26,10 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
 
+    <!-- Dokuwiki -->
+    <!-- Must be place before bootstrap links because of difference in Jquery version-->
+    <?php tpl_metaheaders() ?>
+
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -34,9 +38,14 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <!-- Dokuwiki -->
-    <!-- Must be place after the bootstrap link in order to customize bootstrap-->
-    <?php tpl_metaheaders() ?>
+    <!-- Bootstrap css customization -->
+    <!-- This Css is not in the framework of Dokuwiki because bootstrap requires a more recent jquery version than Dokuwiki -->
+    <!-- Therefore Bootstrap must be placed after the call of tpl_metaheaders-->
+    <!-- Version: -->
+    <!--    - Jquery: https://github.com/twbs/bootstrap/blob/v3.3.5/bower.json -->
+    <!--    - Doku: https://www.dokuwiki.org/devel:jqueryfaq -->
+    <link href="<?php echo tpl_getMediaFile(array("css/customBootStrap.css")); ?>" rel="stylesheet">
+
 
 </head>
 <body role="document">

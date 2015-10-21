@@ -2,7 +2,7 @@
 
 /* The fixed top bar */
 body {
-    padding-top: 110px;
+    padding-top: 71px;
 }
 
 /* To center the logo */
@@ -10,17 +10,7 @@ body {
     padding-top: 10px;
 }
 
-/* The header tease
- the message on the top of the page
-*/
-.header-tease {
-    background-color: #0275d8;
-    color: #fff;
-    display: block;
-    font-weight: bold;
-    padding: 15px 20px;
-    text-align: center;
-}
+
 
 /* Affix for the sidebar */
 .bs-docs-sidebar.affix {

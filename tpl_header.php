@@ -126,11 +126,9 @@ if (!defined('DOKU_INC')) die();
 
 </nav>
 
-<div class="container-fluid">
+<div class="container-tease">
     <!-- The tease -->
-    <a href="http://blog.getbootstrap.com/2015/08/19/bootstrap-4-alpha/" class="header-tease">Aww yeah, Bootstrap 4
-        is
-        coming!</a>
+    <a href="" class="header-tease">My Tease</a>
 </div>
 
 
