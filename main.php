@@ -96,6 +96,7 @@ include('tpl_header.php')
 
             <!-- Some plugin (such as wrap) rely on the dokuwiki div tag for their css-->
             <div class="dokuwiki">
+
                 <!-- The content: Show, Edit, .... -->
                 <?php tpl_flush() ?>
                 <?php tpl_includeFile('pageheader.html') ?>
@@ -103,14 +104,18 @@ include('tpl_header.php')
 
                 <!-- Add a p around the content to enable the reader view in Mozilla -->
                 <!-- https://github.com/mozilla/readability -->
+                <!-- But Firefox close the P because they must contain only inline element ???-->
                 <p>
                     <?php tpl_content($prependTOC = false) ?>
                 </p>
+
                 <!-- wikipage stop -->
                 <?php tpl_includeFile('pagefooter.html') ?>
 
                 <?php tpl_pageinfo() ?>
                 <?php tpl_flush() ?>
+
+
             </div>
 
         </div>
@@ -121,11 +126,11 @@ include('tpl_header.php')
             <nav role="complementary" class="col-md-3">
                 <!-- Below data-spy="affix" data-offset-top="230"-->
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
-                    <h3 class="toggle"><?php echo $lang['sidebar'] ?></h3>
+                    <!--<h3 class="toggle">--><?php //echo $lang['sidebar'] ?><!--</h3>-->
                     <?php tpl_flush() ?>
-                    <?php tpl_includeFile('sidebarheader.html') ?>
+                    <?php //tpl_includeFile('sidebarheader.html') ?>
                     <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
-                    <?php tpl_includeFile('sidebarfooter.html') ?>
+                    <?php //tpl_includeFile('sidebarfooter.html') ?>
                     <a class="back-to-top" href="#top"> Back to top </a>
                 </nav>
 

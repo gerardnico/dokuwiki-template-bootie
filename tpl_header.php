@@ -12,7 +12,7 @@ if (!defined('DOKU_INC')) die();
 
 <!--    --><?php //echo $lang['skip_to_content']; ?><!--</a></li>-->
 
-<nav class="navbar navbar-fixed-top navbar-inverse">
+<nav class="navbar navbar-default navbar-fixed-top">
 
     <!-- Container = 70%, container-fluid = 100% -->
     <div class="container">
@@ -49,68 +49,83 @@ if (!defined('DOKU_INC')) die();
 
         <!-- The navbar -->
         <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-left">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
+
+
             <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <form class="navbar-form">
+                        <label class="sr-only" for="search">Search Term</label>
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
+                </li>
                 <li><a href="#">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
 
                 <!-- User tool -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">
-                        <?php echo $lang['user_tools']; ?><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <?php
-                        tpl_action('admin', 1, 'li');
-                        tpl_action('profile', 1, 'li');
-                        tpl_action('register', 1, 'li');
-                        tpl_action('login', 1, 'li');
-                        ?>
-                    </ul>
-                </li>
-
-                <!-- Page tool -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">
-                        <?php echo $lang['page_tools']; ?><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <?php
-                        $data = array(
-                            'view' => 'main',
-                            'items' => array(
-                                'edit' => tpl_action('edit', 1, 'li', 1, '<span>', '</span>'),
-                                'revert' => tpl_action('revert', 1, 'li', 1, '<span>', '</span>'),
-                                'revisions' => tpl_action('revisions', 1, 'li', 1, '<span>', '</span>'),
-                                'backlink' => tpl_action('backlink', 1, 'li', 1, '<span>', '</span>'),
-                                'subscribe' => tpl_action('subscribe', 1, 'li', 1, '<span>', '</span>'),
-                                'top' => tpl_action('top', 1, 'li', 1, '<span>', '</span>')
-                            )
-                        );
-
-                        // the page tools can be amended through a custom plugin hook
-                        $evt = new Doku_Event('TEMPLATE_PAGETOOLS_DISPLAY', $data);
-                        if ($evt->advise_before()) {
-                            foreach ($evt->data['items'] as $k => $html) echo $html;
-                        }
-                        $evt->advise_after();
-                        unset($data);
-                        unset($evt);
-                        ?>
-                    </ul>
-                </li>
-
                 <!-- Logged As -->
                 <?php
                 if (!empty($_SERVER['REMOTE_USER'])) {
-                    echo '<li><a href="/doku.php?id=user:' . $_SERVER['REMOTE_USER'] . '" title="' . $lang['loggedinas'] . $_SERVER['REMOTE_USER'] . '">';
-                    print $lang['loggedinas'] . ' ' . editorinfo($_SERVER['REMOTE_USER'], true);
-                    echo '</a></li>';
+
+                    echo '<li class="dropdown">';
+                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="' . $lang['loggedinas'] . $_SERVER['REMOTE_USER'] . '">';
+                    print editorinfo($_SERVER['REMOTE_USER'], true);
+                    print '<span class="caret"></span>';
+                    echo '</a>';
+
+                    echo '<ul class="dropdown-menu">';
+                    tpl_action('admin', 1, 'li');
+                    tpl_action('profile', 1, 'li');
+                    tpl_action('login', 1, 'li');
+                    echo '</ul>';
+
+                    echo '</li>';
+
+                } else {
+
+                    tpl_action('login', $link = true, $wrapper = 'li');
+                    tpl_action('register', 1, 'li');
+
                 }
                 ?>
 
+
+                <!-- Page tool -->
+                <li class="dropdown navbar-right"
+                ">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-haspopup="true" aria-expanded="false">
+                    <?php echo $lang['page_tools']; ?><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <?php
+                    $data = array(
+                        'view' => 'main',
+                        'items' => array(
+                            'edit' => tpl_action('edit', 1, 'li', 1, '<span>', '</span>'),
+                            'purge' => '<li>' . tpl_link(wl($ID, ['purge' => true]), '<span>Purge this page</span>', 'class="action purge"', $return = true) . '</li>',
+                            'revert' => tpl_action('revert', 1, 'li', 1, '<span>', '</span>'),
+                            'revisions' => tpl_action('revisions', 1, 'li', 1, '<span>', '</span>'),
+                            'backlink' => tpl_action('backlink', 1, 'li', 1, '<span>', '</span>'),
+                            'subscribe' => tpl_action('subscribe', 1, 'li', 1, '<span>', '</span>'),
+                            'top' => tpl_action('top', 1, 'li', 1, '<span>', '</span>')
+                        )
+                    );
+
+                    // the page tools can be amended through a custom plugin hook
+                    $evt = new Doku_Event('TEMPLATE_PAGETOOLS_DISPLAY', $data);
+                    if ($evt->advise_before()) {
+                        foreach ($evt->data['items'] as $k => $html) echo $html;
+                    }
+                    $evt->advise_after();
+                    unset($data);
+                    unset($evt);
+                    ?>
+                </ul>
+                </li>
+
+
             </ul>
+
 
         </div>
         <!-- ********** The CONTENT layout********** -->
@@ -125,11 +140,10 @@ if (!defined('DOKU_INC')) die();
     </div>
 
 </nav>
-
-<div class="container-tease">
-    <!-- The tease -->
-    <a href="" class="header-tease">My Tease</a>
-</div>
+<!-- A tease -->
+<!--<div class="container-tease">-->
+<!--    <a href="" class="header-tease">My Tease</a>-->
+<!--</div>-->
 
 
 
