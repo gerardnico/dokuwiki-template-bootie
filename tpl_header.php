@@ -32,7 +32,6 @@ if (!defined('DOKU_INC')) die();
             // get logo either out of the template images folder or data/media folder
             $logoSize = array();
             $logo = tpl_getMediaFile(array(':wiki:logo.png', ':logo.png', 'images/logo.png'), false, $logoSize);
-
             // display logo and wiki title in a link to the home page
             tpl_link(
                 wl(),
@@ -52,13 +51,15 @@ if (!defined('DOKU_INC')) die();
 
 
             <ul class="nav navbar-nav navbar-left">
+
+                <!-- Search Form -->
                 <li>
-                    <form class="navbar-form">
-                        <label class="sr-only" for="search">Search Term</label>
-                        <input type="text" class="form-control" placeholder="Search...">
-                    </form>
+                    <?php  tpl_searchform_bootie() ?>
                 </li>
-                <li><a href="#">About</a></li>
+
+                <!-- About -->
+                <li><?php tpl_link(wl('about'), hsc("About"), 'title="About"'); ?></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
@@ -103,6 +104,8 @@ if (!defined('DOKU_INC')) die();
                         'items' => array(
                             'edit' => tpl_action('edit', 1, 'li', 1, '<span>', '</span>'),
                             'purge' => '<li>' . tpl_link(wl($ID, ['purge' => true]), '<span>Purge this page</span>', 'class="action purge"', $return = true) . '</li>',
+                            'purge_css' => '<li>' . tpl_link("/lib/exe/css.php?purge=true", '<span>Purge Css</span>', 'class="action purge"', $return = true) . '</li>',
+                            'purge_js' => '<li>' . tpl_link("/lib/exe/js.php?purge=true", '<span>Purge Js</span>', 'class="action purge"', $return = true) . '</li>',
                             'revert' => tpl_action('revert', 1, 'li', 1, '<span>', '</span>'),
                             'revisions' => tpl_action('revisions', 1, 'li', 1, '<span>', '</span>'),
                             'backlink' => tpl_action('backlink', 1, 'li', 1, '<span>', '</span>'),
@@ -130,11 +133,11 @@ if (!defined('DOKU_INC')) die();
         </div>
         <!-- ********** The CONTENT layout********** -->
         <?php
-        if ($ACT == 'show') {
-            if ($conf['breadcrumbs']) {
-                tpl_breadcrumbs_bootstrap();
-            }
+
+        if ($conf['breadcrumbs']) {
+            tpl_breadcrumbs_bootstrap();
         }
+
         ?>
 
     </div>

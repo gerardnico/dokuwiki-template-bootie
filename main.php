@@ -32,11 +32,11 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap css customization -->
     <!-- This Css is not in the framework of Dokuwiki because bootstrap requires a more recent jquery version than Dokuwiki -->
@@ -73,72 +73,66 @@ include('tpl_header.php')
     <?php html_msgarea() ?>
 
 
-    <div class="container bs-docs-container">
+    <div class="row">
 
-        <div class="row">
-
-            <!-- ********** The CONTENT layout ********** -->
-            <!-- ********** One or two coloumns ********** -->
-            <?php if ($ACT == 'show' and $showSidebar and page_findnearest($conf['sidebar'])) {
-                echo '<div role="main" class="col-md-9">';
-            } else {
-                echo '<div role="main" class="col-md-12">';
-            }
-            ?>
+        <!-- ********** The CONTENT layout ********** -->
+        <!-- ********** One or two coloumns ********** -->
+        <?php if ($ACT == 'show' and $showSidebar and page_findnearest($conf['sidebar'])) {
+            echo '<div role="main" class="col-md-9">';
+        } else {
+            echo '<div role="main" class="col-md-12">';
+        }
+        ?>
 
 
-            <!-- BREADCRUMBS -->
-            <?php
-            if ($conf['youarehere']) {
-                tpl_youarehere_bootstrap();
-            }
-            ?>
+        <!-- BREADCRUMBS -->
+        <?php
+        if ($conf['youarehere']) {
+            tpl_youarehere_bootstrap();
+        }
+        ?>
 
-            <!-- Some plugin (such as wrap) rely on the dokuwiki div tag for their css-->
-            <div class="dokuwiki">
+        <!-- Some plugin (such as wrap) rely on the dokuwiki div tag for their css-->
+        <div class="dokuwiki">
 
-                <!-- The content: Show, Edit, .... -->
-                <?php tpl_flush() ?>
-                <?php tpl_includeFile('pageheader.html') ?>
-                <!-- wikipage start $prependTOC=false -->
+            <!-- The content: Show, Edit, .... -->
+            <?php tpl_flush() ?>
+            <?php tpl_includeFile('pageheader.html') ?>
+            <!-- wikipage start $prependTOC=false -->
 
-                <!-- Add a p around the content to enable the reader view in Mozilla -->
-                <!-- https://github.com/mozilla/readability -->
-                <!-- But Firefox close the P because they must contain only inline element ???-->
-                <p>
-                    <?php tpl_content($prependTOC = false) ?>
-                </p>
+            <!-- Add a p around the content to enable the reader view in Mozilla -->
+            <!-- https://github.com/mozilla/readability -->
+            <!-- But Firefox close the P because they must contain only inline element ???-->
+            <?php tpl_content($prependTOC = false) ?>
 
-                <!-- wikipage stop -->
-                <?php tpl_includeFile('pagefooter.html') ?>
+            <!-- wikipage stop -->
+            <?php tpl_includeFile('pagefooter.html') ?>
 
-                <?php tpl_pageinfo() ?>
-                <?php tpl_flush() ?>
+            <?php tpl_pageinfo() ?>
+            <?php tpl_flush() ?>
 
-
-            </div>
 
         </div>
-        <!-- /content -->
-
-        <!-- SIDE BAR -->
-        <?php if ($showSidebar and $ACT == 'show'): ?>
-            <nav role="complementary" class="col-md-3">
-                <!-- Below data-spy="affix" data-offset-top="230"-->
-                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
-                    <!--<h3 class="toggle">--><?php //echo $lang['sidebar'] ?><!--</h3>-->
-                    <?php tpl_flush() ?>
-                    <?php //tpl_includeFile('sidebarheader.html') ?>
-                    <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
-                    <?php //tpl_includeFile('sidebarfooter.html') ?>
-                    <a class="back-to-top" href="#top"> Back to top </a>
-                </nav>
-
-            </nav>
-        <?php endif; ?>
-
 
     </div>
+    <!-- /content -->
+
+    <!-- SIDE BAR -->
+    <?php if ($showSidebar and $ACT == 'show'): ?>
+        <nav role="complementary" class="col-md-3">
+            <!-- Below data-spy="affix" data-offset-top="230"-->
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+                <!--<h3 class="toggle">--><?php //echo $lang['sidebar'] ?><!--</h3>-->
+                <?php tpl_flush() ?>
+                <?php //tpl_includeFile('sidebarheader.html') ?>
+                <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
+                <?php //tpl_includeFile('sidebarfooter.html') ?>
+                <a class="back-to-top" href="#top"> Back to top </a>
+            </nav>
+
+        </nav>
+    <?php endif; ?>
+
 </div>
 <!-- /wrapper -->
 

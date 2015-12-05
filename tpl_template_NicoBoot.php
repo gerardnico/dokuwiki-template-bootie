@@ -15,7 +15,7 @@ if (!defined('DOKU_INC')) die();
  * @param string $sep Separator between entries
  * @return bool
  */
-function tpl_breadcrumbs_bootstrap($sep = '•')
+function tpl_breadcrumbs_bootstrap($sep = 'ï¿½')
 {
 
     global $conf;
@@ -151,3 +151,26 @@ function tpl_pageName($id){
     return $name;
 
 }
+
+function tpl_searchform_bootie($ajax = true, $autocomplete = true) {
+    global $lang;
+    global $ACT;
+    global $QUERY;
+
+    // don't print the search form if search action has been disabled
+    if(!actionOK('search')) return false;
+
+    print '<form action="'.wl().'" accept-charset="utf-8" class="search navbar-form" id="dw__search" method="get" role="search"><div class="no">';
+    print '<input type="hidden" name="do" value="search" />';
+    print '<label class="sr-only" for="search">Search Term</label>';
+    print '<input type="text" ';
+    if($ACT == 'search') print 'value="'.htmlspecialchars($QUERY).'" ';
+    print 'placeholder="'.$lang['btn_search'].'..." ';
+    if(!$autocomplete) print 'autocomplete="off" ';
+    print 'id="qsearch__in" accesskey="f" name="id" class="edit form-control" title="[F]" />';
+//    print '<button type="submit" title="'.$lang['btn_search'].'">'.$lang['btn_search'].'</button>';
+    if($ajax) print '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';
+    print '</div></form>';
+    return true;
+}
+

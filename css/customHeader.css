@@ -1,0 +1,7 @@
+/* Customization of element */
+
+/* There is a padding from chrom one the UL of the list of search pagae */
+#qsearch__out > ul {
+    padding-left: 0px;
+}
+
