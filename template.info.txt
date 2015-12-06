@@ -2,6 +2,6 @@ base     bootie
 author   Nicolas Gerard
 email    gerardnico@gmail.com
 date     2015-03-28
-name     Bootstraap template
-desc     Template that was developed for the website gerardnico.com
+name     Bootie
+desc     Bootstrap nased template developed for the website gerardnico.com
 url      http://www.gerardnico.com
