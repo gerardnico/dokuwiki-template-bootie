@@ -13,6 +13,15 @@ body {
 }
 
 
+/* Top Fix Bar": Form element */
+#dw__search {
+    margin-right: unset; /* to get rid of the horizontal lift in a mobile view */
+    margin-left: unset; /* to get rid of the horizontal lift in a mobile view */
+    border-color: unset; /* No Border please */
+    border-top: unset; /* No Border please */
+    border-bottom:unset; /* No Border please */
+}
+
 
 /* Affix for the sidebar */
 .bs-docs-sidebar.affix {
