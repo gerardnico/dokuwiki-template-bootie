@@ -44,7 +44,7 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
     <!-- Version: -->
     <!--    - Jquery: https://github.com/twbs/bootstrap/blob/v3.3.5/bower.json -->
     <!--    - Doku: https://www.dokuwiki.org/devel:jqueryfaq -->
-    <link href="<?php echo tpl_getMediaFile(array("css/customBootStrap.css")); ?>" rel="stylesheet">
+    <link href="<?php echo tpl_getMediaFile(array("css/customBootstrap.css")); ?>" rel="stylesheet">
 
 
 </head>
