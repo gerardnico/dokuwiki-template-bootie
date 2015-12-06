@@ -29,15 +29,17 @@ if (!defined('DOKU_INC')) die();
             </button>
             <!-- The brand -->
             <?php
-            // get logo either out of the template images folder or data/media folder
-            $logoSize = array();
-            $logo = tpl_getMediaFile(array(':wiki:logo.png', ':logo.png', 'images/logo.png'), false, $logoSize);
-            // display logo and wiki title in a link to the home page
-            tpl_link(
-                wl(),
-                '<img src="' . $logo . '" ' . $logoSize[3] . ' alt="" />',
-                'class="navbar-brand" accesskey="h" title="[H]"'
-            );
+            // TODO: Replace with icon font
+            // https://css-tricks.com/examples/IconFont/
+//            // get logo either out of the template images folder or data/media folder
+//            $logoSize = array();
+//            $logo = tpl_getMediaFile(array(':wiki:logo.png', ':logo.png', 'images/logo.png'), false, $logoSize);
+//            // display logo and wiki title in a link to the home page
+//            tpl_link(
+//                wl(),
+//                '<img src="' . $logo . '" ' . $logoSize[3] . ' alt="" />',
+//                'class="navbar-brand" accesskey="h" title="[H]"'
+//            );
 
             tpl_link(
                 wl(),
@@ -70,7 +72,7 @@ if (!defined('DOKU_INC')) die();
 
                     echo '<li class="dropdown">';
                     echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="' . $lang['loggedinas'] . $_SERVER['REMOTE_USER'] . '">';
-                    print editorinfo($_SERVER['REMOTE_USER'], true);
+                    print 'User '.ucfirst(editorinfo($_SERVER['REMOTE_USER'], true));
                     print '<span class="caret"></span>';
                     echo '</a>';
 
@@ -103,9 +105,6 @@ if (!defined('DOKU_INC')) die();
                         'view' => 'main',
                         'items' => array(
                             'edit' => tpl_action('edit', 1, 'li', 1, '<span>', '</span>'),
-                            'purge' => '<li>' . tpl_link(wl($ID, ['purge' => true]), '<span>Purge this page</span>', 'class="action purge"', $return = true) . '</li>',
-                            'purge_css' => '<li>' . tpl_link("/lib/exe/css.php?purge=true", '<span>Purge Css</span>', 'class="action purge"', $return = true) . '</li>',
-                            'purge_js' => '<li>' . tpl_link("/lib/exe/js.php?purge=true", '<span>Purge Js</span>', 'class="action purge"', $return = true) . '</li>',
                             'revert' => tpl_action('revert', 1, 'li', 1, '<span>', '</span>'),
                             'revisions' => tpl_action('revisions', 1, 'li', 1, '<span>', '</span>'),
                             'backlink' => tpl_action('backlink', 1, 'li', 1, '<span>', '</span>'),
@@ -113,6 +112,15 @@ if (!defined('DOKU_INC')) die();
                             'top' => tpl_action('top', 1, 'li', 1, '<span>', '</span>')
                         )
                     );
+
+
+                    // TODO: Possible to add action ?
+                    if($INFO['ismanager']) {
+                        $data['items']['purge'] = '<li>' . tpl_link(wl($ID, ['purge' => true]), '<span>Purge this page</span>', 'class="action purge"', $return = true) . '</li>';
+                        $data['items']['purge_css'] = '<li>' . tpl_link("/lib/exe/css.php?purge=true", '<span>Purge Css</span>', 'class="action purge"', $return = true) . '</li>';
+                        $data['items']['purge_js'] = '<li>' . tpl_link("/lib/exe/js.php?purge=true", '<span>Purge Js</span>', 'class="action purge"', $return = true) . '</li>';
+                    }
+
 
                     // the page tools can be amended through a custom plugin hook
                     $evt = new Doku_Event('TEMPLATE_PAGETOOLS_DISPLAY', $data);
