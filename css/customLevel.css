@@ -14,11 +14,16 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
     margin-bottom: 1em;
     margin-left: 0;
     margin-right: 0;
-    margin-top: 0;
     padding-bottom: 0;
     padding-left: 0;
     padding-right: 0;
-    padding-top: 0.5em;
+    /*
+    As the top-nav-bar is fix, the two below values must be equal to the navbar offset
+    in order to get a correct navigation to the anchor
+    See http://stackoverflow.com/questions/17181355/boostrap-using-fixed-navbar-and-anchor-tags-to-jump-to-sections
+    */
+    padding-top: 80px;
+    margin-top: -80px;
 }
 div.dokuwiki h1 {
     font-size: 160%;
