@@ -25,6 +25,13 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
     padding-top: 80px;
     margin-top: -80px;
 }
+
+/* The h2 in the extension manager is impacted by the  top-nav-bar fix for the content */
+div.dokuwiki div#extension__manager h2 {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
 div.dokuwiki h1 {
     font-size: 160%;
     font-weight: bold;
