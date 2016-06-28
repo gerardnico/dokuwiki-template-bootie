@@ -1,0 +1,12 @@
+/*Just to override the wrap plugin */
+
+.dokuwiki .wrap_warning {
+    background-image: linear-gradient(to bottom, #fcf8e3 0px, #f8efc0 100%);
+    background-repeat: repeat-x;
+    background-color: #fcf8e3;
+    border-bottom-color: #faebcc;
+    border-left-color: #faebcc;
+    border-right-color: #faebcc;
+    border-top-color: #faebcc;
+    color: #8a6d3b;
+}
