@@ -11,7 +11,7 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
     color: #000;
     font-size: 100%;
     font-weight: normal;
-    margin-bottom: 1em;
+    margin-bottom: 10px;
     margin-left: 0;
     margin-right: 0;
     padding-bottom: 0;
@@ -22,7 +22,7 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
     in order to get a correct navigation to the anchor
     See http://stackoverflow.com/questions/17181355/boostrap-using-fixed-navbar-and-anchor-tags-to-jump-to-sections
     */
-    padding-top: 80px;
+    padding-top: 95px;
     margin-top: -80px;
 }
 
