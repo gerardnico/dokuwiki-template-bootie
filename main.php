@@ -16,6 +16,7 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
 <!--<html lang="--><?php //echo $conf['lang'] ?><!--" dir="--><?php //echo $lang['direction'] ?><!--" class="no-js">-->
 <html lang="<?php echo $conf['lang'] ?>" class="no-js">
 <head>
+
     <meta charset="utf-8"/>
 
     <title><?php tpl_pagetitle() ?> [<?php echo strip_tags($conf['title']) ?>]</title>
@@ -57,7 +58,7 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
 
 <?php
 //Library of template function
-include('tpl_template_NicoBoot.php');
+include_once('tpl_template_NicoBoot.php');
 // The header (navigation)
 include('tpl_header.php')
 ?>
