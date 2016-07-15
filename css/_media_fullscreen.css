@@ -24,6 +24,7 @@
     float: left;
 }
 
+
 #mediamanager__page .namespaces {
     width: 20%;
     min-width: 10em; /* @change */
@@ -198,7 +199,9 @@
 
 #mediamanager__page .filelist ul {
     padding: 0;
-    margin: 0 10px 0 0;
+    margin-right: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 [dir=rtl] #mediamanager__page .filelist ul {
     margin: 0 10px 0 0;
@@ -384,6 +387,8 @@
 
 #mediamanager__page form.meta div.row {
     margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 #mediamanager__page form.meta label span {
