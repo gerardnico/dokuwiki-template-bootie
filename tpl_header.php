@@ -43,7 +43,7 @@ if (!defined('DOKU_INC')) die();
 
             tpl_link(
                 wl(),
-                'Gerardnico', // Title
+                $conf['title'], // Title
                 'class="navbar-brand"')
             ?>
         </div>
