@@ -32,7 +32,7 @@ if (!defined('DOKU_INC')) die();
                 </div>
                 <div>
                     <a href="http://gerardnico.com/wiki/dokuwiki/bootie" title="Designed by Nickeau">Bootie Template</a>
-                    designed by <a href="http://gerardnico.com/" title="Nickeau WebSite">Nickeau</a> with the help of <a
+                    designed by <a href="http://gerardnico.com/" title="Nickeau WebSite">Gerardnico</a> with the help of <a
                         href="http://getbootstrap.com/" title="The Bootstrap">Bootstrap</a>.
                 </div>
             </div>
