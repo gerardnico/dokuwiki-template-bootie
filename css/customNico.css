@@ -18,3 +18,9 @@
     margin-right: auto;
 }
 
+/* To resolve the overlapping of right element on the left picture */
+/* See http://stackoverflow.com/questions/710158/why-do-my-list-item-bullets-overlap-floating-elements */
+u {
+	overflow: hidden;
+}
+
