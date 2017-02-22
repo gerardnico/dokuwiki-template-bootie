@@ -1,7 +1,7 @@
 base     bootie
 author   Nicolas Gerard
 email    gerardnico@gmail.com
-date     2016-07-15
+date     2017-02-22
 name     Bootie
 desc     Bootstrap based template developed for the website gerardnico.com
 url      https://www.dokuwiki.org/template:bootie
