@@ -61,70 +61,84 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
 /**
  * Hierarchical breadcrumbs
  *
+ * This will return the Hierarchical breadcrumbs.
  *
- * @return bool
+ * Config:
+ *    - $conf['youarehere'] must be true
+ *    - add $lang['youarehere'] if $printPrefix is true
+ *
+ * @param bool $printPrefix print or not the $lang['youarehere']
+ * @return string
  */
-function tpl_youarehere_bootstrap() {
+function tpl_youarehere_bootstrap($printPrefix = false) {
+
     global $conf;
-    global $ID;
     global $lang;
 
     // check if enabled
-    if(!$conf['youarehere']) return false;
-
-    $parts = explode(':', $ID);
-    $count = count($parts);
+    if(!$conf['youarehere']) return;
 
     // print intermediate namespace links
-    $part = '';
-    print '<ol class="breadcrumb">'.PHP_EOL;
-    // always print the startpage
-    echo '<li>';
-    echo $lang['youarehere'].' ';
+    $htmlOutput = '<ol class="breadcrumb">'.PHP_EOL;
+
+    // Print the home page
+    $htmlOutput .= '<li>'.PHP_EOL;
+    if ($printPrefix) {
+        $htmlOutput .= $lang['youarehere'] . ' ';
+    }
     $page = $conf['start'];
-    tpl_link(wl($page), tpl_pagetitle($page,true), 'title="' . $page . '"');
+    $htmlOutput .= tpl_link(wl($page), '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>', 'title="' . tpl_pagetitle($page,true) . '"', $return = true);
+    $htmlOutput .= '</li>'.PHP_EOL;
 
-    echo '</li>'.PHP_EOL;
+    // Print the parts if there is more than one
+    global $ID;
+    $idParts = explode(':', $ID);
+    if (count($idParts) > 1) {
 
-    for($i = 0; $i < $count - 1; $i++) {
+        // Print the parts without the last one ($count -1)
+        $page = "";
+        for ($i = 0; $i < count($idParts) - 1; $i++) {
 
-        $part .= $parts[$i].':';
-        $page = $part;
-        if($page == $conf['start']) continue; // Skip startpage
+            $page .= $idParts[$i] . ':';
 
-        // output
-        if ($i == $count) {
-            print '<li class="active">';
-        } else {
-            print '<li>';
+            // Skip home page of the namespace
+            // if ($page == $conf['start']) continue;
+
+            // The last part is the active one
+//            if ($i == $count) {
+//                $htmlOutput .= '<li class="active">';
+//            } else {
+//                $htmlOutput .= '<li>';
+//            }
+
+            $htmlOutput .= '<li>';
+            // html_wikilink because the page has the form pagename: and not pagename:pagename
+            $htmlOutput .= html_wikilink($page);
+            $htmlOutput .= '</li>' . PHP_EOL;
+
         }
-        // html_wikilink because the page has the form pagename: and not pagename:pagename
-        print html_wikilink($page);
-        echo '</li>'.PHP_EOL;
-
     }
 
-    // print current page, skipping start page, skipping for namespace index
-    resolve_pageid('', $page, $exists);
-    // skipping start page
-    if(isset($page) && $page == $part.$parts[$i]) {
-        echo '</ol>'.PHP_EOL;
-        return true;
-    }
-    // skipping for namespace index
-    $page = $part.$parts[$i];
-    if($page == $conf['start']) {
-        echo '</ol>'.PHP_EOL;
-        return true;
-    }
+    // Skipping Wiki Global Root Home Page
+//    resolve_pageid('', $page, $exists);
+//    if(isset($page) && $page == $idPart.$idParts[$i]) {
+//        echo '</ol>'.PHP_EOL;
+//        return true;
+//    }
+//    // skipping for namespace index
+//    $page = $idPart.$idParts[$i];
+//    if($page == $conf['start']) {
+//        echo '</ol>'.PHP_EOL;
+//        return true;
+//    }
 
     // print current page
-    print '<li>';
-    tpl_link(wl($page), tpl_pagetitle($page,true), 'title="' . $page . '"');
-    print '</li>'.PHP_EOL;
+//    print '<li>';
+//    tpl_link(wl($page), tpl_pagetitle($page,true), 'title="' . $page . '"');
+    $htmlOutput .= '</li>'.PHP_EOL;
     // close the breadcrumb
-    echo '</ol>'.PHP_EOL;
-    return true;
+    $htmlOutput .= '</ol>'.PHP_EOL;
+    return $htmlOutput;
 
 }
 

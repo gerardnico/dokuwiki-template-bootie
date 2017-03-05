@@ -120,9 +120,9 @@ include('tpl_header.php')
 
     <!-- SIDE BAR -->
     <?php if ($showSidebar and $ACT == 'show'): ?>
-        <nav role="complementary" class="col-md-3">
+        <nav role="complementary" class="col-md-3" style="padding-top: 15px;">
             <!-- Below data-spy="affix" data-offset-top="230"-->
-            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+            <nav class="bs-docs-sidebar hidden-prints">
                 <!--<h3 class="toggle">--><?php //echo $lang['sidebar'] ?><!--</h3>-->
                 <?php tpl_flush() ?>
                 <?php //tpl_includeFile('sidebarheader.html') ?>
