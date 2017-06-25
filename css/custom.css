@@ -121,4 +121,15 @@ div.preview {
     padding-top: 4px;
 }
 
+/* No float when the media query is too small */
+@media (min-width: 0px) and (max-width: 576px) { 
 
+	.mediaright {
+		float: none;
+	}
+	
+	.medialeft {
+		float: none;
+	}
+
+}

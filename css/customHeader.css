@@ -5,3 +5,75 @@
     padding-left: 0px;
 }
 
+/* No margin left on small screen */
+@media (min-width: 0px) and (max-width: 576px) { 
+
+	#dw__toc h3 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki h2 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level2 {
+		margin-left: 0px;
+	}
+	
+	div.dokuwiki h3 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level3 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki h4 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level4 {
+		margin-left: 0px;
+	}
+	
+	div.dokuwiki h5 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level5 {
+		margin-left: 0px;
+	}
+	
+	div.dokuwiki h6 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level6 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki h7 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level7 {
+		margin-left: 0px;
+	}
+	
+	div.dokuwiki h8 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level8 {
+		margin-left: 0px;
+	}
+	
+	div.dokuwiki h9 {
+		margin-left: 0px;
+	}
+
+	div.dokuwiki div.level9 {
+		margin-left: 0px;
+	}
+
+}
