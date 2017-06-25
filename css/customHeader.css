@@ -11,6 +11,10 @@
 	#dw__toc h3 {
 		margin-left: 0px;
 	}
+	
+	.dokuwiki blockquote.blockquote-plugin {
+		margin: 0.5em 0.5em;
+	}
 
 	div.dokuwiki h2 {
 		margin-left: 0px;
