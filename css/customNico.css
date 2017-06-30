@@ -40,7 +40,7 @@ ul.bookmarkme li {
 /** 
 	MathJax becomes mobile and will not overflow
 **/
-.MJXc-display {
+.MJXc-display, mjx-chtml {
 	overflow-y: hidden;
 	border: 1px solid #ddd;
 	max-width: 100%;
