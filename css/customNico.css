@@ -32,4 +32,9 @@ img, embed, object, video {
   margin: 1rem;
 }
 
+/** The input summary when editing a page is 50px fix **/
+input {
+	max-width: 100%;
+}
+
 
