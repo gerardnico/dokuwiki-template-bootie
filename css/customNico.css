@@ -37,4 +37,14 @@ ul.bookmarkme li {
 	height: unset;
 }
 
+/** 
+	MathJax becomes mobile and will not overflow
+**/
+.MJXc-display {
+	overflow-y: hidden;
+	border: 1px solid #ddd;
+	max-width: 100%;
+	overflow-x: auto;
+}
+
 
