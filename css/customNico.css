@@ -18,12 +18,7 @@
     margin-right: auto;
 }
 
-/* To resolve the overlapping of right element on the left picture */
-/* See http://stackoverflow.com/questions/710158/why-do-my-list-item-bullets-overlap-floating-elements */
-/* Conflict with the header menu, then only for the content inside the dokuwiki class */
-.dokuwiki ul {
-	overflow: hidden;
-}
+
 
 /* Max 100% of the containing container */
 /* Otherwise the image may overflow */
@@ -35,6 +30,11 @@ img, embed, object, video {
 /** The input summary when editing a page is 50px fix **/
 input {
 	max-width: 100%;
+}
+
+/** The icon were clipped **/
+ul.bookmarkme li {
+	height: unset;
 }
 
 
