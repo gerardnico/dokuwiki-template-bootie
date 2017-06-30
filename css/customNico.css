@@ -29,7 +29,7 @@
 /* Otherwise the image may overflow */
 img, embed, object, video {
   max-width: 100%;
-  margin-bottom: 0.5 rem;
-  margin-top: 0.5 rem;
+  margin: 1rem;
 }
+
 
