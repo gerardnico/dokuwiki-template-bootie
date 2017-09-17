@@ -29,26 +29,25 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
 
     $last = count($crumbs);
     $i = 0;
-    echo '<ol class="breadcrumb">'.PHP_EOL;
+    echo '<ol class="breadcrumb justify-content-start">'.PHP_EOL;
+
+    // Try to get the template custom breadcrumb
+    $breadCrumb = tpl_getLang('breadcrumb');
+    if ($breadCrumb=='') {
+        // If not present for the language, get the default one
+        $breadCrumb = $lang['breadcrumb'];
+    }
+    echo '<span id="breadCrumbTitle">'.$breadCrumb.': </span>';
 
     foreach ($crumbs as $id => $name) {
         $i++;
 
         if ($i == $last) {
-            print '<li class="active">';
+            print '<li class="breadcrumb-item active">';
         } else {
-            print '<li>';
+            print '<li class="breadcrumb-item">';
         }
-        if ($i == 1) {
-            // Try to get the template custom breadcrumb
-            $breadCrumb = tpl_getLang('breadcrumb');
-            if ($breadCrumb=='') {
-                // If not present for the language, get the default one
-                $breadCrumb = $lang['breadcrumb'];
-            }
-            echo $breadCrumb.': ';
-        }
-        tpl_link(wl($id), hsc($name), 'title="' . $id . '"');
+        tpl_link(wl($id), hsc($name), 'title="' . $id . '" style="width: 100%;"');
 
         print '</li>'.PHP_EOL;
 
@@ -174,7 +173,7 @@ function tpl_searchform_bootie($ajax = true, $autocomplete = true) {
     // don't print the search form if search action has been disabled
     if(!actionOK('search')) return false;
 
-    print '<form action="'.wl().'" accept-charset="utf-8" class="search navbar-form" id="dw__search" method="get" role="search"><div class="no">';
+    print '<form id="navBarSearch" action="'.wl().'" accept-charset="utf-8" class="search form-inline my-lg-0" id="dw__search" method="get" role="search">';
     print '<input type="hidden" name="do" value="search" />';
     print '<label class="sr-only" for="search">Search Term</label>';
     print '<input type="text" ';
@@ -184,7 +183,67 @@ function tpl_searchform_bootie($ajax = true, $autocomplete = true) {
     print 'id="qsearch__in" accesskey="f" name="id" class="edit form-control" title="[F]" />';
 //    print '<button type="submit" title="'.$lang['btn_search'].'">'.$lang['btn_search'].'</button>';
     if($ajax) print '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';
-    print '</div></form>';
+    print '</form>';
+    return true;
+}
+
+/**
+ * This is a fork of tpl_actionlink where I have added the class parameters
+ *
+ * Like the action buttons but links
+ *
+ * @author Adrian Lang <mail@adrianlang.de>
+ * @see    tpl_get_action
+ *
+ * @param string $type action command
+ * @param string $pre prefix of link
+ * @param string $suf suffix of link
+ * @param string $inner innerHML of link
+ * @param bool $return if true it returns html, otherwise prints
+ * @param string $class the class to be added
+ * @return bool|string html or false if no data, true if printed
+ */
+function tpl_actionlink_bootie($type, $class='', $pre = '', $suf = '', $inner = '', $return = false ) {
+    global $lang;
+    $data = tpl_get_action($type);
+    if($data === false) {
+        return false;
+    } elseif(!is_array($data)) {
+        $out = sprintf($data, 'link');
+    } else {
+        /**
+         * @var string $accesskey
+         * @var string $id
+         * @var string $method
+         * @var bool   $nofollow
+         * @var array  $params
+         * @var string $replacement
+         */
+        extract($data);
+        if(strpos($id, '#') === 0) {
+            $linktarget = $id;
+        } else {
+            $linktarget = wl($id, $params);
+        }
+        $caption = $lang['btn_'.$type];
+        if(strpos($caption, '%s')){
+            $caption = sprintf($caption, $replacement);
+        }
+        $akey    = $addTitle = '';
+        if($accesskey) {
+            $akey     = 'accesskey="'.$accesskey.'" ';
+            $addTitle = ' ['.strtoupper($accesskey).']';
+        }
+        $rel = $nofollow ? 'rel="nofollow" ' : '';
+        $out = tpl_link(
+            $linktarget, $pre.(($inner) ? $inner : $caption).$suf,
+            'class="action '.$type.' '.$class.'" '.
+            $akey.$rel.
+            'title="'.hsc($caption).$addTitle.'"', true
+        );
+    }
+    if($return) return $out;
+    echo $out;
     return true;
 }
 

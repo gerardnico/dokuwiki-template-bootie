@@ -7,11 +7,10 @@ html {
 
 
 .footer {
+
     position: absolute;
     width: 100%;
     left: 0px;
-    /* Set the fixed height of the footer here */
-    height: 100px;
     background-color: #f8f8f8;
     background-image: linear-gradient(to top,#fff 0,#f8f8f8 100%);
     background-repeat: repeat-x;
@@ -19,5 +18,24 @@ html {
     padding-top: 20px;
     border-top-width: 20px;
     padding-bottom: 20px;
+    text-align: center!important;
 
 }
+
+.footer h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-align: left;
+}
+
+.footer li {
+    list-style-type: none;
+    text-align: left;
+}
+
+.footer ul {
+    padding-left: 0px;
+}
+
+
