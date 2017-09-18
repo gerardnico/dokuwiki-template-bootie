@@ -37,7 +37,7 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
         // If not present for the language, get the default one
         $breadCrumb = $lang['breadcrumb'];
     }
-    echo '<span id="breadCrumbTitle">'.$breadCrumb.': </span>';
+    echo '<span id="breadCrumbTitle">'.$breadCrumb.':   </span>';
 
     foreach ($crumbs as $id => $name) {
         $i++;

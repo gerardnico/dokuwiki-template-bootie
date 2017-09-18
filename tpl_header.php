@@ -118,7 +118,8 @@ if (!defined('DOKU_INC')) die();
                         'revisions' => tpl_actionlink_bootie('revisions', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
                         'backlink' => tpl_actionlink_bootie('backlink', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
                         'subscribe' => tpl_actionlink_bootie('subscribe', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
-                        'top' => tpl_actionlink_bootie('top', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
+//                        'top' => tpl_actionlink_bootie('top', "dropdown-item", '<li class="nav-item">', '</li>', '', 1), Already at the top
+                        'index' => tpl_actionlink_bootie('index', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
                     )
                 );
 

@@ -22,11 +22,15 @@ html {
 
 }
 
-.footer h3 {
+#dokuwiki__footer > div.container > div > div > h3 {
     font-size: 1rem;
     font-weight: bold;
-    text-align: center;
     text-align: left;
+    margin-left: unset;
+    border-bottom-style: none;
+    padding-top: unset;
+    margin-top: unset;
+    margin-bottom: unset;
 }
 
 .footer li {
