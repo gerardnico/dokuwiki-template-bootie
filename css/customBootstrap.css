@@ -61,6 +61,24 @@ it's completely on the right*/
     left:unset;
 }
 
+/* The plugin tool may not have the class dropdown-item
+*  This is the same property than dropdown item
+ */
+#navBarPageTool a {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background: 0 0;
+    border: 0;
+}
+
+
+
 /* The nav bar is not 100% basis then the item are not taking the whole
 *  width and the dropdown are not going to the right
 */
