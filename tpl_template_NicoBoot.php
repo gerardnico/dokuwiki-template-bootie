@@ -235,12 +235,12 @@ function tpl_actionlink_bootie($type, $class='', $pre = '', $suf = '', $inner = 
             $addTitle = ' ['.strtoupper($accesskey).']';
         }
         $rel = $nofollow ? 'rel="nofollow" ' : '';
-        $out = tpl_link(
-            $linktarget, $pre.(($inner) ? $inner : $caption).$suf,
+        $out = $pre.tpl_link(
+            $linktarget, (($inner) ? $inner : $caption),
             'class="action '.$type.' '.$class.'" '.
             $akey.$rel.
             'title="'.hsc($caption).$addTitle.'"', true
-        );
+        ).$suf;
     }
     if($return) return $out;
     echo $out;
