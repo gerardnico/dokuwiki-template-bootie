@@ -1,17 +1,22 @@
 /* Customization of element */
 
-/* There is a padding from chrom one the UL of the list of search pagae */
+/* There is a padding from chrome one the UL of the list of search pagae */
 #qsearch__out > ul {
     padding-left: 0px;
 }
 
+/* The result of the search is going at the top outside the windows */
+#qsearch__out {
+    top: 70%;
+}
+
 /* No margin left on small screen */
-@media (min-width: 0px) and (max-width: 576px) { 
+@media (min-width: 0px) and (max-width: 576px) {
 
 	#dw__toc h3 {
 		margin-left: 0px;
 	}
-	
+
 	.dokuwiki blockquote.blockquote-plugin {
 		margin: 0.5em 0.5em;
 	}
@@ -23,7 +28,7 @@
 	div.dokuwiki div.level2 {
 		margin-left: 0px;
 	}
-	
+
 	div.dokuwiki h3 {
 		margin-left: 0px;
 	}
@@ -39,7 +44,7 @@
 	div.dokuwiki div.level4 {
 		margin-left: 0px;
 	}
-	
+
 	div.dokuwiki h5 {
 		margin-left: 0px;
 	}
@@ -47,7 +52,7 @@
 	div.dokuwiki div.level5 {
 		margin-left: 0px;
 	}
-	
+
 	div.dokuwiki h6 {
 		margin-left: 0px;
 	}
@@ -63,7 +68,7 @@
 	div.dokuwiki div.level7 {
 		margin-left: 0px;
 	}
-	
+
 	div.dokuwiki h8 {
 		margin-left: 0px;
 	}
@@ -71,7 +76,7 @@
 	div.dokuwiki div.level8 {
 		margin-left: 0px;
 	}
-	
+
 	div.dokuwiki h9 {
 		margin-left: 0px;
 	}
