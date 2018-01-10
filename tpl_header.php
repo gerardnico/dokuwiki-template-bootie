@@ -129,6 +129,7 @@ if (!defined('DOKU_INC')) die();
                     $data['items']['purge'] = '<li class="nav-item">' . tpl_link(wl($ID, ['purge' => true]), '<span>Purge this page</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
                     $data['items']['purge_css'] = '<li class="nav-item">' . tpl_link("/lib/exe/css.php?purge=true", '<span>Purge Css</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
                     $data['items']['purge_js'] = '<li class="nav-item">' . tpl_link("/lib/exe/js.php?purge=true", '<span>Purge Js</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
+					$data['items']['export_xhtml'] = '<li class="nav-item">' . tpl_link(wl($ID, ['do' => "export_xhtml"]), '<span>Export Xhtml</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
                 }
 
 
