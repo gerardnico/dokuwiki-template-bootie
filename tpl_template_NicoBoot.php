@@ -237,7 +237,7 @@ function tpl_actionlink_bootie($type, $class='', $pre = '', $suf = '', $inner = 
         $rel = $nofollow ? 'rel="nofollow" ' : '';
         $out = $pre.tpl_link(
             $linktarget, (($inner) ? $inner : $caption),
-            'class="action '.$type.' '.$class.'" '.
+            'class="nav-link action '.$type.' '.$class.'" '.
             $akey.$rel.
             'title="'.hsc($caption).$addTitle.'"', true
         ).$suf;
