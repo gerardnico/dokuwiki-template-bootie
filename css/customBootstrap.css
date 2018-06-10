@@ -2,7 +2,7 @@
 
 /* The fixed top bar */
 body {
-    padding-top: 80px;
+    padding-top: 6rem;
 }
 
 
@@ -37,23 +37,84 @@ ol.breadcrumb {
     overflow-x: hidden;
     overflow-y: hidden;
     /* Style */
-    height: 20px;
-    padding-bottom: 1px;
-    padding-left: 1px;
-    padding-right: 1px;
-    padding-top: 1px;
-    margin-bottom: 1px;
-    font-size: 0.875em;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: unset;
     background-color: unset;
     color: #9d9d9d;
+    display:flex;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+
 }
 
 ol.breadcrumb li a {
     color: #9d9d9d;
 }
 
-/*.navbar-inverse {*/
-    /*background-image: linear-gradient(to bottom, #f5f5f5 0px, #e8e8e8 100%);*/
-    /*background-color: unset;*/
-/*}*/
+/* The page tool drowpdown menu must go the the left because
+it's completely on the right*/
+#navBarPageTool {
+    right:0;
+    left:unset;
+}
+
+/* The plugin tool may not have the class dropdown-item
+*  This is the same property than dropdown item
+ */
+#navBarPageTool a {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background: 0 0;
+    border: 0;
+}
+
+
+
+/* The nav bar is not 100% basis then the item are not taking the whole
+*  width and the dropdown are not going to the right
+*/
+#navBarCollapse {
+    flex-basis: 100%;
+}
+
+
+@media (max-width: 767px) {
+
+    #navBarSearch {
+        flex-basis: 100%;
+        margin-top: 0.5rem;
+    }
+
+}
+
+#navBarSearch {
+    height: 2.5rem
+}
+
+#navBar {
+    display:block; /* Because we have two lines */
+    padding-bottom: 0;
+}
+
+#breadCrumbTitle {
+    white-space: pre;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: ">";
+}
+
+#navBarBrand {
+    font-size: 1.20rem;
+    font-weight: bold;
+}
 

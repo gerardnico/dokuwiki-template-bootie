@@ -32,12 +32,8 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
     <?php tpl_metaheaders() ?>
 
     <!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
     <!-- Bootstrap css customization -->
     <!-- This Css is not in the framework of Dokuwiki because bootstrap requires a more recent jquery version than Dokuwiki -->
@@ -49,7 +45,7 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
 
 
 </head>
-<body role="document">
+<body role="document" >
 <!--[if lte IE 7 ]>
 <div id="IE7"><![endif]-->
 <!--[if IE 8 ]>
@@ -58,12 +54,12 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
 
 <?php
 //Library of template function
-include_once('tpl_template_NicoBoot.php');
+require_once('tpl_template_NicoBoot.php');
 // The header (navigation)
 include('tpl_header.php')
 ?>
-<div class="container">
-
+<!-- Some plugin (such as wrap) rely on the dokuwiki class for their css-->
+<div class="container dokuwiki">
 
     <!-- TAGLINE -->
     <?php if ($conf['tagline']): ?>
@@ -93,27 +89,23 @@ include('tpl_header.php')
         }
         ?>
 
-        <!-- Some plugin (such as wrap) rely on the dokuwiki div tag for their css-->
-        <div class="dokuwiki">
 
-            <!-- The content: Show, Edit, .... -->
-            <?php tpl_flush() ?>
-            <?php tpl_includeFile('pageheader.html') ?>
-            <!-- wikipage start $prependTOC=false -->
+        <!-- The content: Show, Edit, .... -->
+        <?php tpl_flush() ?>
+        <?php tpl_includeFile('pageheader.html') ?>
+        <!-- wikipage start $prependTOC=false -->
 
-            <!-- Add a p around the content to enable the reader view in Mozilla -->
-            <!-- https://github.com/mozilla/readability -->
-            <!-- But Firefox close the P because they must contain only inline element ???-->
-            <?php tpl_content($prependTOC = false) ?>
+        <!-- Add a p around the content to enable the reader view in Mozilla -->
+        <!-- https://github.com/mozilla/readability -->
+        <!-- But Firefox close the P because they must contain only inline element ???-->
+        <?php tpl_content($prependTOC = false) ?>
 
-            <!-- wikipage stop -->
-            <?php tpl_includeFile('pagefooter.html') ?>
+        <!-- wikipage stop -->
+        <?php tpl_includeFile('pagefooter.html') ?>
 
-            <?php tpl_pageinfo() ?>
-            <?php tpl_flush() ?>
+        <?php tpl_pageinfo() ?>
+        <?php tpl_flush() ?>
 
-
-        </div>
 
     </div>
     <!-- /content -->
@@ -145,5 +137,13 @@ include('tpl_header.php')
 <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
 <div id="screen__mode" class="no"></div><?php /* helper to detect CSS media query in script.js */ ?>
 <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
 </body>
 </html>
