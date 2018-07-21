@@ -7,7 +7,7 @@ See the documentation page on Dokuwiki: [Bootie Template](https://www.dokuwiki.o
 The site tool and the page tool are in the same menu called Tools.
 
 ## Version
-Work with PHP 5.6
+Developed with PHP 7.2.5
 
 
 ## Release
