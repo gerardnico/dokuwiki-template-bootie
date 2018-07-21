@@ -81,22 +81,18 @@ if (!defined('DOKU_INC')) die();
                             <?php print 'User ' . ucfirst(editorinfo($_SERVER['REMOTE_USER'], true)); ?>
                         </a>
 
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownUserTool">
+                        <ul id="navBarUserTool" class="dropdown-menu" aria-labelledby="navbarDropdownUserTool">
                             <?php
-                            tpl_actionlink_bootie('admin', "dropdown-item");
-                            tpl_actionlink_bootie('profile', "dropdown-item");
-                            tpl_actionlink_bootie('login', "dropdown-item");
+                            echo (new \dokuwiki\Menu\UserMenu())->getListItems('action dropdown-item nav-item ', false);
                             ?>
-                        </div>
+                        </ul>
 
 
                     </li>
                     <?php
                 } else {
 
-                    tpl_actionlink_bootie('login', "dropdown-item", '<li class="nav-item">', '</li>');
-                    tpl_actionlink_bootie('register', "dropdown-item", '<li class="nav-item">', '</li>');
+                    echo (new \dokuwiki\Menu\UserMenu())->getListItems('action nav-link ', false);
 
                 }
 
@@ -110,37 +106,32 @@ if (!defined('DOKU_INC')) die();
 
                 echo '<ul id="navBarPageTool" class="dropdown-menu"  aria-labelledby="navbarDropdownPageTool">';
 
-                $data = array(
-                    'view' => 'main',
-                    'items' => array(
-                        'edit' => tpl_actionlink_bootie('edit', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
-                        'revert' => tpl_actionlink_bootie('revert', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
-                        'revisions' => tpl_actionlink_bootie('revisions', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
-                        'backlink' => tpl_actionlink_bootie('backlink', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
-                        'subscribe' => tpl_actionlink_bootie('subscribe', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
-//                        'top' => tpl_actionlink_bootie('top', "dropdown-item", '<li class="nav-item">', '</li>', '', 1), Already at the top
-                        'index' => tpl_actionlink_bootie('index', "dropdown-item", '<li class="nav-item">', '</li>', '', 1),
-                    )
-                );
+                echo (new \dokuwiki\Menu\PageMenu())->getListItems('action nav-item ', false);
+
+                // Site Tool
+                echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action nav-item ', false);
 
 
-                // TODO: Possible to add action ?
+                // TODO: https://www.dokuwiki.org/devel:menus
                 if ($INFO['ismanager']) {
+
                     $data['items']['purge'] = '<li class="nav-item">' . tpl_link(wl($ID, ['purge' => true]), '<span>Purge this page</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
                     $data['items']['purge_css'] = '<li class="nav-item">' . tpl_link("/lib/exe/css.php?purge=true", '<span>Purge Css</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
                     $data['items']['purge_js'] = '<li class="nav-item">' . tpl_link("/lib/exe/js.php?purge=true", '<span>Purge Js</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
-					$data['items']['export_xhtml'] = '<li class="nav-item">' . tpl_link(wl($ID, ['do' => "export_xhtml"]), '<span>Export Xhtml</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
+                    $data['items']['export_xhtml'] = '<li class="nav-item">' . tpl_link(wl($ID, ['do' => "export_xhtml"]), '<span>Export Xhtml</span>', 'class="action purge dropdown-item"', $return = true) . '</li>';
+
+                    // the page tools can be amended through a custom plugin hook
+                    $evt = new Doku_Event('TEMPLATE_PAGETOOLS_DISPLAY', $data);
+                    if ($evt->advise_before()) {
+                        foreach ($evt->data['items'] as $k => $html) echo $html;
+                    }
+                    $evt->advise_after();
+                    unset($data);
+                    unset($evt);
+
                 }
 
 
-                // the page tools can be amended through a custom plugin hook
-                $evt = new Doku_Event('TEMPLATE_PAGETOOLS_DISPLAY', $data);
-                if ($evt->advise_before()) {
-                    foreach ($evt->data['items'] as $k => $html) echo $html;
-                }
-                $evt->advise_after();
-                unset($data);
-                unset($evt);
 
                 echo '</ul>';
                 echo '</li>';
