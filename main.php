@@ -69,11 +69,17 @@ include('tpl_header.php')
     <!-- The global message array -->
     <?php html_msgarea() ?>
 
+    <!-- A trigger to show content on the top part of the website -->
+    <?php 
+        $data="";// Mandatory
+        trigger_event('TPL_TOP_OUTPUT',$data);
+    ?>
+
 
     <div class="row">
 
         <!-- ********** The CONTENT layout ********** -->
-        <!-- ********** One or two coloumns ********** -->
+        <!-- ********** One or two columns ********** -->
         <?php if ($ACT == 'show' and $showSidebar and page_findnearest($conf['sidebar'])) {
             echo '<div role="main" class="col-md-9">';
         } else {
@@ -122,6 +128,12 @@ include('tpl_header.php')
                 <?php //tpl_includeFile('sidebarfooter.html') ?>
                 <a class="back-to-top" href="#top"> Back to top </a>
             </nav>
+            
+            <!-- A trigger to show content on the top part of the website -->
+            <?php 
+                $data="";// Mandatory
+                trigger_event('TPL_SIDEBAR_OUTPUT',$data);
+            ?>
 
         </nav>
     <?php endif; ?>
