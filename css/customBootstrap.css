@@ -36,6 +36,7 @@ ol.breadcrumb {
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: hidden;
+    height: 30px;
     /* Style */
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
