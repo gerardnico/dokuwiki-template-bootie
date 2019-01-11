@@ -9,6 +9,12 @@ The site tool and the page tool are in the same menu called Tools.
 ## Version
 Developed with PHP 7.2.5
 
+## Entry point
+
+There is two entry point:
+
+  * the file [main.php](main.php) - that shows the page
+  * the file [detail.php](detail.php) - that shows the image
 
 ## Release
 ### 2018-07-21

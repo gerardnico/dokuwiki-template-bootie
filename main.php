@@ -129,7 +129,7 @@ include('tpl_header.php')
                 <a class="back-to-top" href="#top"> Back to top </a>
             </nav>
             
-            <!-- A trigger to show content on the top part of the website -->
+            <!-- A trigger to show content on the sidebar part of the website -->
             <?php 
                 $data="";// Mandatory
                 trigger_event('TPL_SIDEBAR_OUTPUT',$data);
