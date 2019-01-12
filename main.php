@@ -72,7 +72,7 @@ include('tpl_header.php')
     <!-- A trigger to show content on the top part of the website -->
     <?php 
         $data="";// Mandatory
-        trigger_event('TPL_TOP_OUTPUT',$data);
+        trigger_event('TPL_PAGE_TOP_OUTPUT',$data);
     ?>
 
 
@@ -132,7 +132,7 @@ include('tpl_header.php')
             <!-- A trigger to show content on the sidebar part of the website -->
             <?php 
                 $data="";// Mandatory
-                trigger_event('TPL_SIDEBAR_OUTPUT',$data);
+                trigger_event('TPL_SIDEBAR_BOTTOM_OUTPUT',$data);
             ?>
 
         </nav>

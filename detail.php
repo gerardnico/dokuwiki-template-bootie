@@ -55,7 +55,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 		
 			<?php 
                 $data="";// Mandatory for the below function
-                trigger_event('TPL_TOP_OUTPUT',$data);
+                trigger_event('TPL_PAGE_TOP_OUTPUT',$data);
             ?>
             
             <!-- Must contain One row -->
