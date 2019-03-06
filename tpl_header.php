@@ -1,16 +1,11 @@
 <?php
 /**
- * Template header, included in the main and detail files
+ * Template header, included in the files main.php and detail.php
  */
 
 // must be run from within DokuWiki
 if (!defined('DOKU_INC')) die();
 ?>
-
-<!-- ********** HEADER ********** -->
-<?php tpl_includeFile('header.html') ?>
-
-<?php //echo $lang['skip_to_content']; ?>
 
 
 <!--navbar-expand-lg gives the breakpoint -->

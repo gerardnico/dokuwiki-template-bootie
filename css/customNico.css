@@ -24,7 +24,6 @@
 /* Otherwise the image may overflow */
 img, embed, object, video {
   max-width: 100%;
-  margin: 1rem;
 }
 
 /** The input summary when editing a page is 50px fix **/

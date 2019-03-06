@@ -23,3 +23,19 @@ There is two entry point:
 ### 2017-02-22 (Frusterick Manners)
   * Bootstrap 3.3.7 - The dokuwiki "Frusterick Manners" version comes with Jquery 3.0 and Bootstrap 3.3.6 doesn't allow that.
 
+## Note
+
+### Icons
+
+Add the icon:
+
+  * :wiki:logo.svg
+  * or :logo.svg
+
+### Tagline
+
+tagline is used in the manifest description
+
+## Speed
+
+https://developers.google.com/speed/
