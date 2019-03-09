@@ -163,6 +163,3 @@ if (!defined('DOKU_INC')) die();
 <!--    <a href="" class="header-tease">My Tease</a>-->
 <!--</div>-->
 
-
-
-
