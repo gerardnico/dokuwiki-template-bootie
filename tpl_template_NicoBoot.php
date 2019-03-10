@@ -359,6 +359,8 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
 {
 
     global $ACT;
+    global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
+    $DOKU_TPL_BOOTIE_PRELOAD_CSS = array();
 
     $newHeaderTypes = array();
     $bootstrapHeaders = tpl_get_default_headers();
@@ -372,12 +374,27 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
                 break;
             case "link":
                 // index, rss, manifest, search, alternate, stylesheet
-
                 // delete edit
-                $newLinkData = $bootstrapHeaders[$headerType];
+                $newLinkData = array();
+                $headerData = array_merge($headerData,$bootstrapHeaders[$headerType]);
                 foreach ($headerData as $linkData) {
-                    if ($linkData['rel'] !== 'edit') {
-                        $newLinkData[] = $linkData;
+                    switch ($linkData['rel']){
+                        case 'edit':
+                            break;
+                        case 'stylesheet':
+
+                            // Take the stylesheet to load them at the end
+                            $DOKU_TPL_BOOTIE_PRELOAD_CSS[] = $linkData;
+
+                            // Change the loading mechanism to preload
+                            $linkData['rel']='preload';
+                            $linkData['as']='style';
+                            $newLinkData[] = $linkData;
+
+                            break;
+                        default:
+                            $newLinkData[] = $linkData;
+                            break;
                     }
                 }
                 $newHeaderTypes[$headerType] = $newLinkData;
@@ -386,24 +403,31 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
             case "script":
 
                 $newScriptData = array();
+                // Bootstrap JQuery  must be first
+                // TODO difficult to read
+                if ($ACT == 'show') {
+                    $newScriptData = $bootstrapHeaders[$headerType];
+                }
 
                 foreach ($headerData as $scriptData) {
                     $scriptData['defer'] = "true";
                     if ($ACT == 'show') {
                         // delete JQuery
                         // https://www.dokuwiki.org/config:jquerycdn
-                        // Delete JQuery (already given by the template
+                        // We take the Jquery of Bootstrap
                         $pos = strpos($scriptData['src'], 'jquery');
                         if ($pos === false) {
-
+                            $newScriptData[] = $scriptData;
                         }
                     } else {
                         $newScriptData[] = $scriptData;
                     }
                 }
 
-                // Add the Bootstrap Script
-                $newScriptData = array_merge($newScriptData, $bootstrapHeaders[$headerType]);
+                if ($ACT !== 'show') {
+                    // Add the Bootstrap Script
+                    $newScriptData = array_merge($newScriptData, $bootstrapHeaders[$headerType]);
+                }
                 $newHeaderTypes[$headerType] = $newScriptData;
                 break;
 

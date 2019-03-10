@@ -153,5 +153,15 @@ include('tpl_header.php')
 <?php
 $data = "";// Mandatory
 trigger_event('TPL_DOCUMENT_CLOSING', $data);
+tpl_flush();
+?>
+
+<!-- The stylesheet -->
+<?php
+global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
+
+foreach ($DOKU_TPL_BOOTIE_PRELOAD_CSS as $link){
+    ptln('<link rel="stylesheet" href="'.$link['href'].'">');
+}
 ?>
 </html>
