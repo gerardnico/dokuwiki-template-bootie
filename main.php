@@ -21,7 +21,8 @@ global $conf;
 $hasSidebar = page_findnearest($conf['sidebar']);
 $showSidebar = $hasSidebar && ($ACT == 'show');
 
-
+global $EVENT_HANDLER;
+$EVENT_HANDLER->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', null, 'tpl_bootie_meta_header');
 
 // There is no header in the Home page
 if ($ID == "start") {
@@ -33,25 +34,19 @@ if ($ID == "start") {
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang'] ?>" lang="<?php echo $conf['lang'] ?>"
-      dir="<?php echo $lang['direction'] ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang'] ?>" lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>">
 <head>
-
-    <?php
-        _tpl_metaheaders_action(tpl_get_bootstrap_urls());
-    ?>
 
     <?php tpl_metaheaders() ?>
 
     <meta charset="utf-8"/>
 
-<!--    <title>--><?php //echo $pageTitle ?><!-- [--><?php //echo strip_tags($conf['title']) ?><!--]</title>-->
+    <title><?php echo $pageTitle ?> [<?php echo strip_tags($conf['title']) ?>]</title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
 
-    <?php tpl_flush() ?>
 
 </head>
 <body role="document">

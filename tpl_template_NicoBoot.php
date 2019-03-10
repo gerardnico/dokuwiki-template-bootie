@@ -253,20 +253,32 @@ function tpl_actionlink_bootie($type, $class = '', $pre = '', $suf = '', $inner 
 }
 
 
-function tpl_get_bootstrap_urls()
+/**
+ * @return array
+ * Return the headers needed by this template
+ * */
+function tpl_get_default_headers()
 {
     global $conf;
 
     $script = array();
     if (!$conf[BOOTIE]['cdn']) {
+
         $baseJs = DOKU_BASE . 'lib/tpl/bootie/js/';
 
-        $script[] = array(
-            'src' => $baseJs . 'jquery-3.3.1.slim.min.js',
-            'integrity' => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
-            'crossorigin' => "anonymous",
-            'defer' => "true"
-        );
+        global $ACT;
+        if ($ACT == 'show') {
+
+            // Other mode, we pick the Javascript of Dokuwiki
+            $script[] = array(
+                'src' => $baseJs . 'jquery-3.3.1.slim.min.js',
+                'integrity' => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
+                'crossorigin' => "anonymous",
+                'defer' => "true"
+            );
+
+        }
+
         $script[] = array(
             'src' => $baseJs . 'popper-1.14.7.min.js',
             'integrity' => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
@@ -282,7 +294,9 @@ function tpl_get_bootstrap_urls()
 
         );
 
+
     } else {
+
         $baseJs = DOKU_BASE . '/lib/tpl/bootie/js/';
         $script[] = array(
             'src' => $baseJs . 'jquery-3.3.1.slim.min.js',
@@ -309,7 +323,7 @@ function tpl_get_bootstrap_urls()
     if (!$conf[BOOTIE]['cdn']) {
         $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/';
         $css[] = array(
-            'href' => $baseCss.'bootstrap-4.3.1.min.css',
+            'href' => $baseCss . 'bootstrap-4.3.1.min.css',
             'integrity' => "sha384-ZYfZnVukOuh/gRpU9uN+T9XwwRFJ9Y+0Ylk3zKvI184omb/HoOtQ0F8Iol7Nix7q",
             'crossorigin' => "anonymous",
             'rel' => "stylesheet",
@@ -330,6 +344,72 @@ function tpl_get_bootstrap_urls()
         'script' => $script,
         'link' => $css
     );
+
+
+}
+
+/**
+ * @param Doku_Event $event
+ * @param $param
+ * Function that handle the META HEADER event
+ *   * It will add the Bootstrap Js and CSS
+ *   * Make all script and resources defer
+ */
+function tpl_bootie_meta_header(Doku_Event &$event, $param)
+{
+
+    global $ACT;
+
+    $newHeaderTypes = array();
+    $bootstrapHeaders = tpl_get_default_headers();
+    $eventHeaderTypes = $event->data;
+    foreach ($eventHeaderTypes as $headerType => $headerData) {
+        switch ($headerType) {
+            case "meta":
+                // generator, color, robots, keywords
+                // nothing to do pick them all
+                $newHeaderTypes[$headerType] = $headerData;
+                break;
+            case "link":
+                // index, rss, manifest, search, alternate, stylesheet
+
+                // delete edit
+                $newLinkData = $bootstrapHeaders[$headerType];
+                foreach ($headerData as $linkData) {
+                    if ($linkData['rel'] !== 'edit') {
+                        $newLinkData[] = $linkData;
+                    }
+                }
+                $newHeaderTypes[$headerType] = $newLinkData;
+                break;
+
+            case "script":
+
+                $newScriptData = array();
+
+                foreach ($headerData as $scriptData) {
+                    $scriptData['defer'] = "true";
+                    if ($ACT == 'show') {
+                        // delete JQuery
+                        // https://www.dokuwiki.org/config:jquerycdn
+                        // Delete JQuery (already given by the template
+                        $pos = strpos($scriptData['src'], 'jquery');
+                        if ($pos === false) {
+
+                        }
+                    } else {
+                        $newScriptData[] = $scriptData;
+                    }
+                }
+
+                // Add the Bootstrap Script
+                $newScriptData = array_merge($newScriptData, $bootstrapHeaders[$headerType]);
+                $newHeaderTypes[$headerType] = $newScriptData;
+                break;
+
+        }
+    }
+    $event->data = $newHeaderTypes;
 
 
 }
