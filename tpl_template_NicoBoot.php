@@ -259,10 +259,10 @@ function tpl_actionlink_bootie($type, $class = '', $pre = '', $suf = '', $inner 
  * */
 function tpl_get_default_headers()
 {
-    global $conf;
 
+    $useCdn = tpl_getConf('cdn');
     $script = array();
-    if (!$conf[BOOTIE]['cdn']) {
+    if (!$useCdn) {
 
         $baseJs = DOKU_BASE . 'lib/tpl/bootie/js/';
 
@@ -316,7 +316,7 @@ function tpl_get_default_headers()
     }
 
 
-    if (!$conf[BOOTIE]['cdn']) {
+    if (!$useCdn) {
         $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/';
         $css['bootstrap'] = array(
             'href' => $baseCss . 'bootstrap-4.3.1.min.css',
