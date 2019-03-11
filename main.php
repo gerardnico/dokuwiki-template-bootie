@@ -149,7 +149,13 @@ include('tpl_header.php')
 global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
 
 foreach ($DOKU_TPL_BOOTIE_PRELOAD_CSS as $link){
-    ptln('<link rel="stylesheet" href="'.$link['href'].'">');
+    $htmlLink = '<link rel="stylesheet" href="' . $link['href'] . '" ';
+    if ($link['crossorigin']!=""){
+        $htmlLink .= ' crossorigin="'.$link['crossorigin'].'" ';
+    }
+    // No integrity here
+    $htmlLink .= '>';
+    ptln($htmlLink);
 }
 ?>
 

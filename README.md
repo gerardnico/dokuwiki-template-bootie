@@ -27,7 +27,10 @@ The configuration can be change with the [Configuration Manager Plugin](https://
   * `footer`: the footer name page to search. Default to `footer`
   * `cdn`: if this configuration switch is on, you'll get the Javascript and Stylesheet whenever possible from a CDN
   
+## Support
 
+  * The [styling plugin](https://www.dokuwiki.org/plugin:styling) will complain that it doesn't found some Javascript. You can disable it
+    
 ## Release
 
 ### 2019-03-11
