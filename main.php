@@ -61,13 +61,12 @@ include('tpl_header.php')
   * dokuwiki__top ID is needed for the "Back to top" utility
   * used also by some plugins
 -->
-
 <div class="container <?php echo tpl_classes() ?>" id="dokuwiki__top">
 
-    <!-- TAGLINE -->
-    <?php if ($conf['tagline']): ?>
-        <p class="claim"><?php echo $conf['tagline']; ?></p>
-    <?php endif ?>
+    <!-- TAGLINE (TODO put in on the head) -->
+    <!--    --><?php //if ($conf['tagline']): ?>
+    <!--        <p class="claim">--><?php //echo $conf['tagline']; ?><!--</p>-->
+    <!--    --><?php //endif ?>
 
     <!-- The global message array -->
     <?php html_msgarea() ?>
@@ -145,6 +144,15 @@ include('tpl_header.php')
 <?php include('tpl_footer.php') ?>
 
 
+<!-- The stylesheet (before indexer work and script at the end) -->
+<?php
+global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
+
+foreach ($DOKU_TPL_BOOTIE_PRELOAD_CSS as $link){
+    ptln('<link rel="stylesheet" href="'.$link['href'].'">');
+}
+?>
+
 <!-- Indexer -->
 <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
 
@@ -156,12 +164,5 @@ trigger_event('TPL_DOCUMENT_CLOSING', $data);
 tpl_flush();
 ?>
 
-<!-- The stylesheet -->
-<?php
-global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
 
-foreach ($DOKU_TPL_BOOTIE_PRELOAD_CSS as $link){
-    ptln('<link rel="stylesheet" href="'.$link['href'].'">');
-}
-?>
 </html>

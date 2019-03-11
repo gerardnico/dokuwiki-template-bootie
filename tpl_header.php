@@ -158,8 +158,3 @@ if (!defined('DOKU_INC')) die();
 </nav>
 
 
-<!-- A tease -->
-<!--<div class="container-tease">-->
-<!--    <a href="" class="header-tease">My Tease</a>-->
-<!--</div>-->
-
