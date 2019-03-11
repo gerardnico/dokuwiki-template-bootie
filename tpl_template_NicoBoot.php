@@ -266,27 +266,23 @@ function tpl_get_default_headers()
 
         $baseJs = DOKU_BASE . 'lib/tpl/bootie/js/';
 
-        global $ACT;
-        if ($ACT == 'show') {
+        // Other mode, we pick the Javascript of Dokuwiki
+        $script['jquery'] = array(
+            'src' => $baseJs . 'jquery-3.3.1.slim.min.js',
+            'integrity' => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
+            'crossorigin' => "anonymous",
+            'defer' => "true"
+        );
 
-            // Other mode, we pick the Javascript of Dokuwiki
-            $script[] = array(
-                'src' => $baseJs . 'jquery-3.3.1.slim.min.js',
-                'integrity' => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
-                'crossorigin' => "anonymous",
-                'defer' => "true"
-            );
 
-        }
-
-        $script[] = array(
+        $script['popper'] = array(
             'src' => $baseJs . 'popper-1.14.7.min.js',
             'integrity' => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
             'crossorigin' => "anonymous",
             'defer' => "true"
 
         );
-        $script[] = array(
+        $script['bootstrap'] = array(
             'src' => $baseJs . 'bootstrap-4.3.1.min.js',
             'integrity' => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",
             'crossorigin' => "anonymous",
@@ -297,21 +293,21 @@ function tpl_get_default_headers()
 
     } else {
 
-        $baseJs = DOKU_BASE . '/lib/tpl/bootie/js/';
-        $script[] = array(
-            'src' => $baseJs . 'jquery-3.3.1.slim.min.js',
+        // use a cdn
+        $script['jquery'] = array(
+            'src' => 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
             'integrity' => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
             'crossorigin' => "anonymous",
             'defer' => "true"
         );
-        $script[] = array(
-            'src' => $baseJs . 'popper-1.14.7.min.js',
+        $script['popper'] = array(
+            'src' => 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
             'integrity' => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
             'crossorigin' => "anonymous",
             'defer' => "true"
         );
-        $script[] = array(
-            'src' => $baseJs . 'bootstrap-4.3.1.min.js',
+        $script['bootstrap'] = array(
+            'src' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
             'integrity' => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",
             'crossorigin' => "anonymous",
             'defer' => "true"
@@ -322,7 +318,7 @@ function tpl_get_default_headers()
 
     if (!$conf[BOOTIE]['cdn']) {
         $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/';
-        $css[] = array(
+        $css['bootstrap'] = array(
             'href' => $baseCss . 'bootstrap-4.3.1.min.css',
             'integrity' => "sha384-ZYfZnVukOuh/gRpU9uN+T9XwwRFJ9Y+0Ylk3zKvI184omb/HoOtQ0F8Iol7Nix7q",
             'crossorigin' => "anonymous",
@@ -331,12 +327,11 @@ function tpl_get_default_headers()
         );
 
     } else {
-        $css[] = array(
+        $css['bootstrap'] = array(
             'href' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
             'integrity' => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
             'crossorigin' => "anonymous",
             'rel' => "stylesheet",
-
         );
     };
 
@@ -376,9 +371,9 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
                 // index, rss, manifest, search, alternate, stylesheet
                 // delete edit
                 $newLinkData = array();
-                $headerData = array_merge($headerData,$bootstrapHeaders[$headerType]);
+                $headerData = array_merge($headerData, $bootstrapHeaders[$headerType]);
                 foreach ($headerData as $linkData) {
-                    switch ($linkData['rel']){
+                    switch ($linkData['rel']) {
                         case 'edit':
                             break;
                         case 'stylesheet':
@@ -387,8 +382,8 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
                             $DOKU_TPL_BOOTIE_PRELOAD_CSS[] = $linkData;
 
                             // Change the loading mechanism to preload
-                            $linkData['rel']='preload';
-                            $linkData['as']='style';
+                            $linkData['rel'] = 'preload';
+                            $linkData['as'] = 'style';
                             $newLinkData[] = $linkData;
 
                             break;
@@ -403,31 +398,26 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
             case "script":
 
                 $newScriptData = array();
-                // Bootstrap JQuery  must be first
-                // TODO difficult to read
-                if ($ACT == 'show') {
-                    $newScriptData = $bootstrapHeaders[$headerType];
-                }
-
                 foreach ($headerData as $scriptData) {
                     $scriptData['defer'] = "true";
-                    if ($ACT == 'show') {
-                        // delete JQuery
-                        // https://www.dokuwiki.org/config:jquerycdn
-                        // We take the Jquery of Bootstrap
-                        $pos = strpos($scriptData['src'], 'jquery');
-                        if ($pos === false) {
-                            $newScriptData[] = $scriptData;
-                        }
-                    } else {
+                    $pos = strpos($scriptData['src'], 'jquery');
+                    if ($pos === false) {
                         $newScriptData[] = $scriptData;
+                    } else {
+                        // This is the Jquery script
+                        if ($ACT == 'show') {
+                            // https://www.dokuwiki.org/config:jquerycdn
+                            // We take the Jquery of Bootstrap
+                            $newScriptData = array_merge($newScriptData, $bootstrapHeaders[$headerType]);
+                        } else {
+                            // We take the Jquery of doku and we add Bootstrap
+                            $newScriptData[] = $scriptData; // js
+                            $newScriptData[] = $bootstrapHeaders[$headerType]['popper'];
+                            $newScriptData[] = $bootstrapHeaders[$headerType]['bootstrap'];
+                        }
                     }
                 }
 
-                if ($ACT !== 'show') {
-                    // Add the Bootstrap Script
-                    $newScriptData = array_merge($newScriptData, $bootstrapHeaders[$headerType]);
-                }
                 $newHeaderTypes[$headerType] = $newScriptData;
                 break;
 

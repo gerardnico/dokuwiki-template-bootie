@@ -13,4 +13,5 @@ $lang['breadcrumb'] = 'Breadcrumb'; // Default is trace.
 /* The title of the menu */
 $lang['page_tools'] = 'Tools';
 
+
 ?>

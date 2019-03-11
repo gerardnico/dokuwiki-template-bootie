@@ -9,6 +9,7 @@ $meta['footer'] = array('string',
     "_pattern" => "/[a-zA-Z0-9]*/" // Only Accept alphanumeric characters
 );
 
-
+// Do we use CDN when posible
+$meta['cdn'] = array('onoff');
 
 ?>
