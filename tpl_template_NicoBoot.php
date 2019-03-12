@@ -264,26 +264,27 @@ function tpl_get_default_headers()
     $script = array();
     if (!$useCdn) {
 
-        $baseJs = DOKU_BASE . 'lib/tpl/bootie/js/';
+        $localBaseJs = DOKU_BASE . 'lib/tpl/bootie/js/';
 
         // Other mode, we pick the Javascript of Dokuwiki
+        // jquery must not be slim because the post is needed for qsearch
         $script['jquery'] = array(
-            'src' => $baseJs . 'jquery-3.3.1.slim.min.js',
-            'integrity' => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
+            'src' => $localBaseJs . 'jquery-3.3.1.min.js',
+            'integrity' => "sha256-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT",
             'crossorigin' => "anonymous",
             'defer' => "true"
         );
 
 
         $script['popper'] = array(
-            'src' => $baseJs . 'popper-1.14.7.min.js',
+            'src' => $localBaseJs . 'popper-1.14.7.min.js',
             'integrity' => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
             'crossorigin' => "anonymous",
             'defer' => "true"
 
         );
         $script['bootstrap'] = array(
-            'src' => $baseJs . 'bootstrap-4.3.1.min.js',
+            'src' => $localBaseJs . 'bootstrap-4.3.1.min.js',
             'integrity' => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",
             'crossorigin' => "anonymous",
             'defer' => "true"
@@ -294,9 +295,10 @@ function tpl_get_default_headers()
     } else {
 
         // use a cdn
+        // jquery must not be slim because the post is needed for qsearch
         $script['jquery'] = array(
-            'src' => 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-            'integrity' => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
+            'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js',
+            'integrity' => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
             'crossorigin' => "anonymous",
             'defer' => "true"
         );
