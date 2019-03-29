@@ -33,6 +33,11 @@ The configuration can be change with the [Configuration Manager Plugin](https://
     
 ## Release
 
+
+### Next
+
+  * [JqueryUI Bootstrap](https://cdn.rawgit.com/arschmitz/jqueryui-bootstrap-adapter/v0.3.0/index.html)
+  
 ### 2019-03-11
 
 Performance release:

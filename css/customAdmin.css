@@ -2,16 +2,16 @@
 * Extension
 */
 /*Unable to see the screenshot light*/
-#extension__list .legend div.screenshot span {
-    left: 1em;
-}
+/*#extension__list .legend div.screenshot span {*/
+    /*left: 1em;*/
+/*}*/
 
-/*Position of the screenshot was not good*/
-#extension__list .legend div.screenshot {
-    margin-left: -146px;
-}
+/*!*Position of the screenshot was not good*!*/
+/*#extension__list .legend div.screenshot {*/
+    /*margin-left: -146px;*/
+/*}*/
 
-/*Popularity bar misplaced*/
-#extension__list .legend div.popularity {
-    right: 2em;
-}
+/*!*Popularity bar misplaced*!*/
+/*#extension__list .legend div.popularity {*/
+    /*right: 2em;*/
+/*}*/

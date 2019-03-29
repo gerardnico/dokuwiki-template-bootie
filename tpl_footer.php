@@ -11,7 +11,6 @@ if (!defined('DOKU_INC')) die();
 <footer id="dokuwiki__footer" class="footer pad">
 
 
-
     <?php
     $footerPageName = tpl_getConf('footer');
     if (page_findnearest($footerPageName)) {
@@ -39,11 +38,11 @@ if (!defined('DOKU_INC')) die();
                 alt="Driven by DokuWiki"/></a>
     </div>
     <div>
-        <a href="http://gerardnico.com/wiki/dokuwiki/bootie" title="Designed by Nickeau">Bootie Template</a>
-        designed by <a href="http://gerardnico.com/" title="Nickeau WebSite">Gerardnico</a> with the help of <a
-            href="http://getbootstrap.com/" title="The Bootstrap">Bootstrap</a>.
+        <a href="https://gerardnico.com/dokuwiki/bootie" title="Designed by Nickeau">Bootie Template</a>
+        designed by <a href="https://gerardnico.com/" title="Nickeau WebSite">Gerardnico</a> with the help of <a
+            href="https://getbootstrap.com/" title="The Bootstrap">Bootstrap</a>.
     </div>
 
-</footer><!-- /footer -->
+</footer>
 
 

@@ -77,8 +77,8 @@ include('tpl_header.php')
     trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
     ?>
 
-
-    <div class="row">
+    <!-- Relative positioning is important for the positioning of the pagetools -->
+    <div class="row" style="position: relative">
 
         <!-- ********** The CONTENT layout ********** -->
         <!-- ********** One or two columns ********** -->
@@ -111,6 +111,7 @@ include('tpl_header.php')
         <?php tpl_flush() ?>
 
 
+
     </div>
     <!-- /content -->
 
@@ -136,6 +137,21 @@ include('tpl_header.php')
 
         </nav>
     <?php endif; ?>
+
+    <!-- PAGE/USER/SITE ACTIONS -->
+    <?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
+        <div id="dokuwiki__pagetools">
+            <h3 class="a11y"><?php echo $lang['page_tools']; ?></h3>
+            <div class="tools">
+                <ul>
+                    <?php echo (new \dokuwiki\Menu\PageMenu())->getListItems(); ?>
+                    <?php echo (new \dokuwiki\Menu\UserMenu())->getListItems('action'); ?>
+                    <?php echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action'); ?>
+                    <?php // FYI: for all menu in mobile: echo (new \dokuwiki\Menu\MobileMenu())->getDropdown($lang['tools']); ?>
+                </ul>
+            </div>
+        </div>
+    <?php } ?>
 
 </div>
 <!-- /wrapper -->
