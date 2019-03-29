@@ -55,56 +55,39 @@ ol.breadcrumb li a {
     color: #9d9d9d;
 }
 
-/* The page tool drowpdown menu must go the the left because
-it's completely on the right*/
+/*!* The page tool drowpdown menu must go the the left because*/
+/*it's completely on the right*!*/
 #navBarPageTool {
     right:0;
     left:unset;
 }
 
-/* The plugin tool may not have the class dropdown-item
-*  This is the same property than dropdown item
- */
-#navBarPageTool a {
-    display: block;
-    width: 100%;
-    padding: .25rem 1.5rem;
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: inherit;
-    white-space: nowrap;
-    background: 0 0;
-    border: 0;
-}
+
+/*!* The nav bar is not 100% basis then the item are not taking the whole*/
+/**  width and the dropdown are not going to the right*/
+/**!*/
+/*#navBarCollapse {*/
+    /*flex-basis: 100%;*/
+/*}*/
 
 
+/*@media (max-width: 767px) {*/
 
-/* The nav bar is not 100% basis then the item are not taking the whole
-*  width and the dropdown are not going to the right
-*/
-#navBarCollapse {
-    flex-basis: 100%;
-}
+    /*#navBarSearch {*/
+        /*flex-basis: 100%;*/
+        /*margin-top: 0.5rem;*/
+    /*}*/
 
+/*}*/
 
-@media (max-width: 767px) {
+/*#navBarSearch {*/
+    /*height: 2.5rem*/
+/*}*/
 
-    #navBarSearch {
-        flex-basis: 100%;
-        margin-top: 0.5rem;
-    }
-
-}
-
-#navBarSearch {
-    height: 2.5rem
-}
-
-#navBar {
-    display:block; /* Because we have two lines */
-    padding-bottom: 0;
-}
+/*#navBar {*/
+    /*display:block; !* Because we have two lines *!*/
+    /*padding-bottom: 0;*/
+/*}*/
 
 #breadCrumbTitle {
     white-space: pre;
