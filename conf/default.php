@@ -3,7 +3,7 @@
 
 // The name of the footer page to search
 $conf['footer'] = 'footer';
-$conf['navbar'] = 'navbar';
+$conf['header'] = 'header';
 
 // Use a cdn when possible
 $conf['cdn'] = false;

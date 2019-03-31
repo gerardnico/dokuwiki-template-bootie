@@ -140,7 +140,7 @@ include('tpl_header.php')
 
     <!-- PAGE/USER/SITE ACTIONS -->
     <?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
-        <div id="dokuwiki__pagetools">
+        <div id="dokuwiki__pagetools" style="z-index: 1030;" class="d-none d-md-block">
             <h3 class="a11y"><?php echo $lang['page_tools']; ?></h3>
             <div class="tools">
                 <ul>

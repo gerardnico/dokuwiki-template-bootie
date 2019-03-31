@@ -8,6 +8,7 @@
 
 // for the configuration manager
 $lang['footer'] = 'The name of the footer page to search';
+$lang['header'] = 'The name of the header page to search';
 
 $lang['cdn'] = 'Use a CDN when possible';
 

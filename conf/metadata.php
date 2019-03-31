@@ -9,7 +9,7 @@ $meta['footer'] = array('string',
     "_pattern" => "/[a-zA-Z0-9]*/" // Only Accept alphanumeric characters
 );
 
-$meta['navbar'] = array('string',
+$meta['header'] = array('string',
     "_caution" => "warning", // Show a warning
     "_pattern" => "/[a-zA-Z0-9]*/" // Only Accept alphanumeric characters
 );

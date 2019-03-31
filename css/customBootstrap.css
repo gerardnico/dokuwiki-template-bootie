@@ -34,21 +34,11 @@ ol.breadcrumb {
     /*This will clip the left side in mobile device
     in order to have a fix height on the top bar*/
     overflow: hidden;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    height: 30px;
-    /* Style */
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    padding-right: 0;
-    padding-left: 0;
-    margin-bottom: unset;
     background-color: unset;
     color: #9d9d9d;
     display:flex;
     flex-wrap: wrap;
     font-size: 0.75rem;
-
 }
 
 ol.breadcrumb li a {

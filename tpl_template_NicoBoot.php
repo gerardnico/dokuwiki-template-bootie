@@ -30,7 +30,7 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
 
     $last = count($crumbs);
     $i = 0;
-    echo '<ol class="breadcrumb justify-content-start">' . PHP_EOL;
+    echo '<ol class="breadcrumb justify-content-start m-0 p-0 pb-1">' . PHP_EOL;
 
     // Try to get the template custom breadcrumb
     $breadCrumb = tpl_getLang('breadcrumb');
