@@ -33,7 +33,8 @@ body {
 ol.breadcrumb {
     /*This will clip the left side in mobile device
     in order to have a fix height on the top bar*/
-    overflow: hidden;
+    overflow: hidden; /* Not working */
+    height: 23px; /* The fix height does the trick as all element goes to the second line */
     background-color: unset;
     color: #9d9d9d;
     display:flex;
