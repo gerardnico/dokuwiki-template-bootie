@@ -371,8 +371,7 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
             case "link":
                 // index, rss, manifest, search, alternate, stylesheet
                 // delete edit
-                $newLinkData = array();
-                $headerData = array_merge($headerData, $bootstrapHeaders[$headerType]);
+                $newLinkData = $bootstrapHeaders[$headerType]; // Css of Bootstrap will be unchanged
                 foreach ($headerData as $linkData) {
                     switch ($linkData['rel']) {
                         case 'edit':
