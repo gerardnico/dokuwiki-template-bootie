@@ -61,7 +61,8 @@ include('tpl_header.php')
   * dokuwiki__top ID is needed for the "Back to top" utility
   * used also by some plugins
 -->
-<div class="container <?php echo tpl_classes() ?>" id="dokuwiki__top">
+<!-- Relative positioning is important for the positioning of the pagetools -->
+<div class="container <?php echo tpl_classes() ?>" id="dokuwiki__top" style="position: relative">
 
     <!-- TAGLINE (TODO put in on the head) -->
     <!--    --><?php //if ($conf['tagline']): ?>
@@ -71,15 +72,13 @@ include('tpl_header.php')
     <!-- The global message array -->
     <?php html_msgarea() ?>
 
+    <!-- A trigger to show content on the top part of the website -->
+    <?php
+    $data = "";// Mandatory
+    trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
+    ?>
 
-    <!-- Relative positioning is important for the positioning of the pagetools -->
-    <div class="row" style="position: relative">
-
-        <!-- A trigger to show content on the top part of the website -->
-        <?php
-        $data = "";// Mandatory
-        trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
-        ?>
+    <div class="row">
 
         <!-- ********** The CONTENT layout ********** -->
         <!-- ********** One or two columns ********** -->
@@ -139,22 +138,23 @@ include('tpl_header.php')
         </nav>
     <?php endif; ?>
 
-    <!-- PAGE/USER/SITE ACTIONS -->
-    <?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
-        <div id="dokuwiki__pagetools" style="z-index: 1030;" class="d-none d-md-block">
-            <h3 class="a11y"><?php echo $lang['page_tools']; ?></h3>
-            <div class="tools">
-                <ul>
-                    <?php echo (new \dokuwiki\Menu\PageMenu())->getListItems(); ?>
-                    <?php echo (new \dokuwiki\Menu\UserMenu())->getListItems('action'); ?>
-                    <?php echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action'); ?>
-                    <?php // FYI: for all menu in mobile: echo (new \dokuwiki\Menu\MobileMenu())->getDropdown($lang['tools']); ?>
-                </ul>
-            </div>
-        </div>
-    <?php } ?>
-
 </div>
+
+<!-- PAGE/USER/SITE ACTIONS -->
+<?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
+    <div id="dokuwiki__pagetools" style="z-index: 1030;" class="d-none d-md-block">
+        <h3 class="a11y"><?php echo $lang['page_tools']; ?></h3>
+        <div class="tools">
+            <ul>
+                <?php echo (new \dokuwiki\Menu\PageMenu())->getListItems(); ?>
+                <?php echo (new \dokuwiki\Menu\UserMenu())->getListItems('action'); ?>
+                <?php echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action'); ?>
+                <?php // FYI: for all menu in mobile: echo (new \dokuwiki\Menu\MobileMenu())->getDropdown($lang['tools']); ?>
+            </ul>
+        </div>
+    </div>
+<?php } ?>
+
 <!-- /wrapper -->
 
 <!-- Footer (used also in details.php -->
