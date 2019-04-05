@@ -355,7 +355,6 @@ function tpl_get_default_headers()
 function tpl_bootie_meta_header(Doku_Event &$event, $param)
 {
 
-    global $ACT;
     global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
     $DOKU_TPL_BOOTIE_PRELOAD_CSS = array();
 
@@ -407,7 +406,7 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
                         $newScriptData[] = $scriptData;
                     } else {
                         // This is the Jquery script
-                        if ($ACT == 'show') {
+                        if (empty($_SERVER['REMOTE_USER'])) {
                             // https://www.dokuwiki.org/config:jquerycdn
                             // We take the Jquery of Bootstrap
                             $newScriptData = array_merge($newScriptData, $bootstrapHeaders[$headerType]);
