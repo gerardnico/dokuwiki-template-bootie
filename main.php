@@ -71,14 +71,15 @@ include('tpl_header.php')
     <!-- The global message array -->
     <?php html_msgarea() ?>
 
-    <!-- A trigger to show content on the top part of the website -->
-    <?php
-    $data = "";// Mandatory
-    trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
-    ?>
 
     <!-- Relative positioning is important for the positioning of the pagetools -->
     <div class="row" style="position: relative">
+
+        <!-- A trigger to show content on the top part of the website -->
+        <?php
+        $data = "";// Mandatory
+        trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
+        ?>
 
         <!-- ********** The CONTENT layout ********** -->
         <!-- ********** One or two columns ********** -->
