@@ -15,6 +15,11 @@
 	list-style-type: none;
 }
 
+/* No minus on the header */
+#dw__toc > h3 > strong {
+	display: none;
+}
+
 /* No margin left on small screen */
 @media (min-width: 0px) and (max-width: 576px) {
 
