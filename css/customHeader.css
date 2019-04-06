@@ -11,7 +11,7 @@
 }
 
 /* No bullet */
-#dw__toc > ul {
+.dw__toc * ul {
 	list-style-type: none;
 }
 
