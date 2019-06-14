@@ -2,7 +2,6 @@
 
 ## About
 
-
 `Bootie` is a [Dokuwiki Template](https://www.dokuwiki.org/template:bootie) integrating the [bootstrap technology](http://getbootstrap.com/) developed for the site [gerardnico.com](http://gerardnico.com)
 
 Developed with PHP 7.2.5.
@@ -11,21 +10,30 @@ Developed with PHP 7.2.5.
 
   
   * [Top Fixed Navbar](http://getbootstrap.com/components/#navbar-fixed-top)
-  * `Footer` page. Same functionality than for the [sidebar](https://www.dokuwiki.org/faq:sidebar#i_have_a_sidebar_functionality_how_can_i_create_or_edit_a_sidebar_now) but with a page called `footer`. 
+  * `Footer` page called `footerbar`. Same functionality than for the [sidebar](https://www.dokuwiki.org/faq:sidebar#i_have_a_sidebar_functionality_how_can_i_create_or_edit_a_sidebar_now) but with a page called `footer`.
+  * `header` page called `headerbar`. Same functionality than for the [sidebar](https://www.dokuwiki.org/faq:sidebar#i_have_a_sidebar_functionality_how_can_i_create_or_edit_a_sidebar_now) but with a page called `footer`. 
   * Performance: All Javascript and CSS stylesheet are served asynchronously (defer for js and at the end for css)
   * Resources (Javascript or Stylesheet) served from CDN or locally
+  * Load the third library via CDN or locally
 
 Options:
 
   * `Menu in sidebar` via [Panel](http://getbootstrap.com/components/#panels-heading) with the [mini-map plugin](https://gerardnico.com/dokuwiki/minimap). It will add a list of page of the current namespace.
-  * Headers numbering and [Toc](https://www.dokuwiki.org/toc) below the first header with the [Rplus rendering](https://www.dokuwiki.org/plugin:rplus) plugin
+  * `Headers numbering` and [Toc](https://www.dokuwiki.org/toc) below the first header with the [Rplus rendering](https://www.dokuwiki.org/plugin:rplus) plugin
 
 ## Configuration
 
 The configuration can be change with the [Configuration Manager Plugin](https://www.dokuwiki.org/plugin:config)
 
-  * `footer`: the footer name page to search. Default to `footer`
+  * `footer`: the footer name page to search. Default to `footerbar`
+  * `header`: the footer name page to search. Default to `headerbar`
   * `cdn`: if this configuration switch is on, you'll get the Javascript and Stylesheet whenever possible from a CDN
+
+Other configuration:
+
+  * Add you icon by creating a svg file at one of this location:
+     * :wiki:logo.svg
+     * or :logo.svg
   
 ## Support
 
@@ -34,9 +42,12 @@ The configuration can be change with the [Configuration Manager Plugin](https://
 ## Release
 
 
-### Next
+### 2019-06-14
 
-  * [JqueryUI Bootstrap](https://cdn.rawgit.com/arschmitz/jqueryui-bootstrap-adapter/v0.3.0/index.html)
+  * Added a header and footer bar functionality
+  * Add the CDN configuration possibility
+  * The toolbar (pagetool) is now on the right side relative positioned
+  * Added two events (TPL_DOCUMENT_CLOSING, TPL_PAGE_TOP_OUTPUT) to be able to output HTML
   
 ### 2019-03-11
 
@@ -56,12 +67,6 @@ Performance release:
 
   * Bootstrap 3.3.7 - The dokuwiki "Frusterick Manners" version comes with Jquery 3.0 and Bootstrap 3.3.6 doesn't allow that.
 
-## Others
-
-  * Add you icon by creating a svg file at one of this location:
-     * :wiki:logo.svg
-     * or :logo.svg
-  * [tagline](https://www.dokuwiki.org/config:tagline) is used in the [manifest](https://www.dokuwiki.org/devel:manifest) description
 
 
 ## Note
@@ -72,3 +77,8 @@ Performance release:
   
      * the file [main.php](main.php) - that shows the page
      * the file [detail.php](detail.php) - that shows the image
+
+## Todo ?
+
+  * [JqueryUI Bootstrap](https://cdn.rawgit.com/arschmitz/jqueryui-bootstrap-adapter/v0.3.0/index.html)
+  * [tagline](https://www.dokuwiki.org/config:tagline) is used in the [manifest](https://www.dokuwiki.org/devel:manifest) description
