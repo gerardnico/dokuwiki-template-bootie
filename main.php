@@ -1,80 +1,88 @@
 <?php
 /**
- * DokuWiki Default Template 2015
+ * Gerardnico Template since 2015
  *
- * @link     http://gerardnico.com/wiki/dokuwiki/template
+ * @link     http://gerardnico.com/dokuwiki/template
  * @author   Nicolas GERARD
  * @license  GPL 2 (http://www.gnu.org/licenses/gpl.html)
  */
 
+//Library of template function
+require_once('tpl_template_NicoBoot.php');
+
 if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
 header('X-UA-Compatible: IE=edge,chrome=1');
 
+global $ID;
+global $lang;
+global $ACT;
+global $conf;
+
 $hasSidebar = page_findnearest($conf['sidebar']);
 $showSidebar = $hasSidebar && ($ACT == 'show');
-?><!DOCTYPE html>
-<!--<html lang="--><?php //echo $conf['lang'] ?><!--" dir="--><?php //echo $lang['direction'] ?><!--" class="no-js">-->
-<html lang="<?php echo $conf['lang'] ?>" class="no-js">
+
+global $EVENT_HANDLER;
+$EVENT_HANDLER->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', null, 'tpl_bootie_meta_header');
+
+// There is no header in the Home page
+if ($ID == "start") {
+    $pageTitle = "Home";
+} else {
+    $pageTitle = tpl_pagetitle($ID, true);
+}
+?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang'] ?>" lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>">
 <head>
+
+    <?php tpl_metaheaders() ?>
 
     <meta charset="utf-8"/>
 
-    <title><?php tpl_pagetitle() ?> [<?php echo strip_tags($conf['title']) ?>]</title>
-    <script>(function (H) {
-            H.className = H.className.replace(/\bno-js\b/, 'js')
-        })(document.documentElement)</script>
+    <title><?php echo $pageTitle ?> [<?php echo strip_tags($conf['title']) ?>]</title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
-    <?php tpl_includeFile('meta.html') ?>
-
-    <!-- Dokuwiki -->
-    <!-- Must be place before bootstrap links because of difference in Jquery version-->
-    <?php tpl_metaheaders() ?>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-    <!-- Bootstrap css customization -->
-    <!-- This Css is not in the framework of Dokuwiki because bootstrap requires a more recent jquery version than Dokuwiki -->
-    <!-- Therefore Bootstrap must be placed after the call of tpl_metaheaders-->
-    <!-- Version: -->
-    <!--    - Jquery: https://github.com/twbs/bootstrap/blob/v3.3.5/bower.json -->
-    <!--    - Doku: https://www.dokuwiki.org/devel:jqueryfaq -->
-    <link href="<?php echo tpl_getMediaFile(array("css/customBootstrap.css")); ?>" rel="stylesheet">
 
 
 </head>
-<body role="document" >
-<!--[if lte IE 7 ]>
-<div id="IE7"><![endif]-->
-<!--[if IE 8 ]>
-<div id="IE8"><![endif]-->
+<body role="document">
 
 
 <?php
-//Library of template function
-require_once('tpl_template_NicoBoot.php');
-// The header (navigation)
+// The header (used also in detail.php)
 include('tpl_header.php')
 ?>
-<!-- Some plugin (such as wrap) rely on the dokuwiki class for their css-->
-<div class="container dokuwiki">
+<!--
+  * tpl_classes will add the dokuwiki class. See https://www.dokuwiki.org/devel:templates#dokuwiki_class
+  * dokuwiki__top ID is needed for the "Back to top" utility
+  * used also by some plugins
+-->
+<!-- Relative positioning is important for the positioning of the pagetools -->
+<div class="container <?php echo tpl_classes() ?>" id="dokuwiki__top" style="position: relative">
 
-    <!-- TAGLINE -->
-    <?php if ($conf['tagline']): ?>
-        <p class="claim"><?php echo $conf['tagline']; ?></p>
-    <?php endif ?>
+    <!-- TAGLINE (TODO put in on the head) -->
+    <!--    --><?php //if ($conf['tagline']): ?>
+    <!--        <p class="claim">--><?php //echo $conf['tagline']; ?><!--</p>-->
+    <!--    --><?php //endif ?>
 
     <!-- The global message array -->
     <?php html_msgarea() ?>
 
+    <!-- A trigger to show content on the top part of the website -->
+    <?php
+    $data = "";// Mandatory
+    trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
+    ?>
 
     <div class="row">
 
         <!-- ********** The CONTENT layout ********** -->
-        <!-- ********** One or two coloumns ********** -->
-        <?php if ($ACT == 'show' and $showSidebar and page_findnearest($conf['sidebar'])) {
+        <!-- ********** One or two columns ********** -->
+        <?php if ($showSidebar) {
             echo '<div role="main" class="col-md-9">';
         } else {
             echo '<div role="main" class="col-md-12">';
@@ -92,58 +100,92 @@ include('tpl_header.php')
 
         <!-- The content: Show, Edit, .... -->
         <?php tpl_flush() ?>
-        <?php tpl_includeFile('pageheader.html') ?>
-        <!-- wikipage start $prependTOC=false -->
+
 
         <!-- Add a p around the content to enable the reader view in Mozilla -->
         <!-- https://github.com/mozilla/readability -->
         <!-- But Firefox close the P because they must contain only inline element ???-->
         <?php tpl_content($prependTOC = false) ?>
 
-        <!-- wikipage stop -->
-        <?php tpl_includeFile('pagefooter.html') ?>
-
         <?php tpl_pageinfo() ?>
         <?php tpl_flush() ?>
+
 
 
     </div>
     <!-- /content -->
 
     <!-- SIDE BAR -->
-    <?php if ($showSidebar and $ACT == 'show'): ?>
+    <?php if ($showSidebar): ?>
         <nav role="complementary" class="col-md-3" style="padding-top: 15px;">
             <!-- Below data-spy="affix" data-offset-top="230"-->
             <nav class="bs-docs-sidebar hidden-prints">
-                <!--<h3 class="toggle">--><?php //echo $lang['sidebar'] ?><!--</h3>-->
+
                 <?php tpl_flush() ?>
-                <?php //tpl_includeFile('sidebarheader.html') ?>
+
                 <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
-                <?php //tpl_includeFile('sidebarfooter.html') ?>
-                <a class="back-to-top" href="#top"> Back to top </a>
+
+                <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>
+
             </nav>
+
+            <!-- A trigger to show content on the sidebar part of the website -->
+            <?php
+            $data = "";// Mandatory
+            trigger_event('TPL_SIDEBAR_BOTTOM_OUTPUT', $data);
+            ?>
 
         </nav>
     <?php endif; ?>
 
 </div>
+
+<!-- PAGE/USER/SITE ACTIONS -->
+<?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
+    <div id="dokuwiki__pagetools" style="z-index: 1030;" class="d-none d-md-block">
+        <h3 class="a11y"><?php echo $lang['page_tools']; ?></h3>
+        <div class="tools">
+            <ul>
+                <?php echo (new \dokuwiki\Menu\PageMenu())->getListItems(); ?>
+                <?php echo (new \dokuwiki\Menu\UserMenu())->getListItems('action'); ?>
+                <?php echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action'); ?>
+                <?php // FYI: for all menu in mobile: echo (new \dokuwiki\Menu\MobileMenu())->getDropdown($lang['tools']); ?>
+            </ul>
+        </div>
+    </div>
+<?php } ?>
+
 <!-- /wrapper -->
 
+<!-- Footer (used also in details.php -->
 <?php include('tpl_footer.php') ?>
 
 
-<!-- /site -->
+<!-- The stylesheet (before indexer work and script at the end) -->
+<?php
+global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
 
+foreach ($DOKU_TPL_BOOTIE_PRELOAD_CSS as $link){
+    $htmlLink = '<link rel="stylesheet" href="' . $link['href'] . '" ';
+    if ($link['crossorigin']!=""){
+        $htmlLink .= ' crossorigin="'.$link['crossorigin'].'" ';
+    }
+    // No integrity here
+    $htmlLink .= '>';
+    ptln($htmlLink);
+}
+?>
+
+<!-- Indexer -->
 <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>
-<div id="screen__mode" class="no"></div><?php /* helper to detect CSS media query in script.js */ ?>
-<!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
 
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-        crossorigin="anonymous"></script>
-</body>
+
+<!-- A trigger to add resources at the end -->
+<?php
+$data = "";// Mandatory
+trigger_event('TPL_DOCUMENT_CLOSING', $data);
+tpl_flush();
+?>
+
+
 </html>
