@@ -34,7 +34,8 @@ if ($ID == "start") {
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang'] ?>" lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang'] ?>" lang="<?php echo $conf['lang'] ?>"
+      dir="<?php echo $lang['direction'] ?>">
 <head>
 
     <?php tpl_metaheaders() ?>
@@ -80,64 +81,79 @@ include('tpl_header.php')
 
     <div class="row">
 
-        <!-- ********** The CONTENT layout ********** -->
-        <!-- ********** One or two columns ********** -->
-        <?php if ($showSidebar) {
-            echo '<div role="main" class="col-md-9">';
-        } else {
-            echo '<div role="main" class="col-md-12">';
-        }
-        ?>
+        <!-- SIDE BAR -->
+        <?php if ($showSidebar): ?>
+            <nav role="complementary" class="col-md-3" >
+                <!-- Below data-spy="affix" data-offset-top="230"-->
+                <nav class="bs-docs-sidebar hidden-prints">
 
+                    <?php tpl_flush() ?>
 
-        <!-- BREADCRUMBS -->
-        <?php
-        if ($conf['youarehere']) {
-            tpl_youarehere_bootstrap();
-        }
-        ?>
+                    <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
 
+                    <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>
 
-        <!-- The content: Show, Edit, .... -->
-        <?php tpl_flush() ?>
+                </nav>
 
-
-        <!-- Add a p around the content to enable the reader view in Mozilla -->
-        <!-- https://github.com/mozilla/readability -->
-        <!-- But Firefox close the P because they must contain only inline element ???-->
-        <?php tpl_content($prependTOC = false) ?>
-
-        <?php tpl_pageinfo() ?>
-        <?php tpl_flush() ?>
-
-
-
-    </div>
-    <!-- /content -->
-
-    <!-- SIDE BAR -->
-    <?php if ($showSidebar): ?>
-        <nav role="complementary" class="col-md-3" style="padding-top: 15px;">
-            <!-- Below data-spy="affix" data-offset-top="230"-->
-            <nav class="bs-docs-sidebar hidden-prints">
-
-                <?php tpl_flush() ?>
-
-                <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
-
-                <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>
+                <!-- A trigger to show content on the sidebar part of the website -->
+                <?php
+                $data = "";// Mandatory
+                trigger_event('TPL_SIDEBAR_BOTTOM_OUTPUT', $data);
+                ?>
 
             </nav>
+        <?php endif; ?>
 
-            <!-- A trigger to show content on the sidebar part of the website -->
+
+        <main role="main" class="col-md-<?php echo(($showSidebar) ? 9 : 16) ?>">
+
+
+            <!-- BREADCRUMBS -->
             <?php
-            $data = "";// Mandatory
-            trigger_event('TPL_SIDEBAR_BOTTOM_OUTPUT', $data);
+            if ($conf['youarehere']) {
+                tpl_youarehere_bootstrap();
+            }
             ?>
 
-        </nav>
-    <?php endif; ?>
 
+            <!-- The content: Show, Edit, .... -->
+            <?php tpl_flush() ?>
+
+
+            <!-- Add a p around the content to enable the reader view in Mozilla -->
+            <!-- https://github.com/mozilla/readability -->
+            <!-- But Firefox close the P because they must contain only inline element ???-->
+            <?php tpl_content($prependTOC = false) ?>
+
+            <?php tpl_pageinfo() ?>
+            <?php tpl_flush() ?>
+        </main>
+
+
+        <!-- SIDE BAR -->
+        <?php if ($showSidebar): ?>
+            <nav role="complementary" class="col-md-4">
+                <!-- Below data-spy="affix" data-offset-top="230"-->
+                <nav class="bs-docs-sidebar hidden-prints">
+
+                    <?php tpl_flush() ?>
+
+                    <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
+
+                    <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>
+
+                </nav>
+
+                <!-- A trigger to show content on the sidebar part of the website -->
+                <?php
+                $data = "";// Mandatory
+                trigger_event('TPL_SIDEBAR_BOTTOM_OUTPUT', $data);
+                ?>
+
+            </nav>
+        <?php endif; ?>
+        <!-- /content -->
+    </div>
 </div>
 
 <!-- PAGE/USER/SITE ACTIONS -->
@@ -165,10 +181,10 @@ include('tpl_header.php')
 <?php
 global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
 
-foreach ($DOKU_TPL_BOOTIE_PRELOAD_CSS as $link){
+foreach ($DOKU_TPL_BOOTIE_PRELOAD_CSS as $link) {
     $htmlLink = '<link rel="stylesheet" href="' . $link['href'] . '" ';
-    if ($link['crossorigin']!=""){
-        $htmlLink .= ' crossorigin="'.$link['crossorigin'].'" ';
+    if ($link['crossorigin'] != "") {
+        $htmlLink .= ' crossorigin="' . $link['crossorigin'] . '" ';
     }
     // No integrity here
     $htmlLink .= '>';

@@ -321,8 +321,8 @@ function tpl_get_default_headers()
     if (!$useCdn) {
         $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/';
         $css['bootstrap'] = array(
-            'href' => $baseCss . 'bootstrap-4.3.1.min.css',
-            'integrity' => "sha384-ZYfZnVukOuh/gRpU9uN+T9XwwRFJ9Y+0Ylk3zKvI184omb/HoOtQ0F8Iol7Nix7q",
+            'href' => $baseCss . 'bootstrap.min.css',
+//            'integrity' => "sha384-ZYfZnVukOuh/gRpU9uN+T9XwwRFJ9Y+0Ylk3zKvI184omb/HoOtQ0F8Iol7Nix7q",
             'crossorigin' => "anonymous",
             'rel' => "stylesheet",
 
