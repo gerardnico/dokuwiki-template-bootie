@@ -83,7 +83,7 @@ include('tpl_header.php')
 
         <!-- SIDE BAR -->
         <?php if ($showSidebar): ?>
-            <nav role="complementary" class="col-md-3" >
+            <nav role="complementary" class="col-md-3 order-last order-md-first">
                 <!-- Below data-spy="affix" data-offset-top="230"-->
                 <nav class="bs-docs-sidebar hidden-prints">
 
@@ -105,10 +105,10 @@ include('tpl_header.php')
         <?php endif; ?>
 
 
-        <main role="main" class="col-md-<?php echo(($showSidebar) ? 9 : 16) ?>">
+        <main role="main" class="col-md-<?php echo(($showSidebar) ? 9 : 16) ?> order-first">
 
 
-            <!-- BREADCRUMBS -->
+            <!-- You are here -->
             <?php
             if ($conf['youarehere']) {
                 tpl_youarehere_bootstrap();
@@ -132,7 +132,7 @@ include('tpl_header.php')
 
         <!-- SIDE BAR -->
         <?php if ($showSidebar): ?>
-            <nav role="complementary" class="col-md-4">
+            <nav role="complementary" class="col-md-4 order-xs-2 order-md-last">
                 <!-- Below data-spy="affix" data-offset-top="230"-->
                 <nav class="bs-docs-sidebar hidden-prints">
 
@@ -154,23 +154,24 @@ include('tpl_header.php')
         <?php endif; ?>
         <!-- /content -->
     </div>
-</div>
 
-<!-- PAGE/USER/SITE ACTIONS -->
-<?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
-    <div id="dokuwiki__pagetools" style="z-index: 1030;" class="d-none d-md-block">
-        <h3 class="a11y"><?php echo $lang['page_tools']; ?></h3>
-        <div class="tools">
-            <ul>
-                <?php echo (new \dokuwiki\Menu\PageMenu())->getListItems(); ?>
-                <?php echo (new \dokuwiki\Menu\UserMenu())->getListItems('action'); ?>
-                <?php echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action'); ?>
-                <?php // FYI: for all menu in mobile: echo (new \dokuwiki\Menu\MobileMenu())->getDropdown($lang['tools']); ?>
-            </ul>
+
+    <!-- PAGE/USER/SITE ACTIONS -->
+    <?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
+        <div id="dokuwiki__pagetools" style="z-index: 1030;" class="d-none d-md-block">
+            <h3 class="a11y"><?php echo $lang['page_tools']; ?></h3>
+            <div class="tools">
+                <ul>
+                    <?php echo (new \dokuwiki\Menu\PageMenu())->getListItems(); ?>
+                    <?php echo (new \dokuwiki\Menu\UserMenu())->getListItems('action'); ?>
+                    <?php echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action'); ?>
+                    <?php // FYI: for all menu in mobile: echo (new \dokuwiki\Menu\MobileMenu())->getDropdown($lang['tools']); ?>
+                </ul>
+            </div>
         </div>
-    </div>
-<?php } ?>
+    <?php } ?>
 
+</div>
 <!-- /wrapper -->
 
 <!-- Footer (used also in details.php -->
