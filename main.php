@@ -86,7 +86,7 @@ include('tpl_header.php')
 
         <!-- SIDE BAR -->
         <?php if ($showSidebar): ?>
-            <nav role="complementary" class="col-md-4 order-last order-md-first">
+            <nav role="complementary" class="col-md-3 order-last order-md-first">
                 <!-- Below data-spy="affix" data-offset-top="230"-->
                 <nav class="bs-docs-sidebar hidden-prints">
 
@@ -100,7 +100,7 @@ include('tpl_header.php')
         <?php endif; ?>
 
 
-        <main role="main" class="col-md-<?php echo(($showSidebar) ? ($showRightSidebar?9:12) : ($showRightSidebar?13:16)) ?> order-first">
+        <main role="main" class="col-md-<?php echo(($showSidebar) ? ($showRightSidebar?10:13) : ($showRightSidebar?13:16)) ?> order-first">
 
 
             <!-- You are here -->
