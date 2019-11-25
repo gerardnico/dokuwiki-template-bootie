@@ -82,3 +82,7 @@ Performance release:
 
   * [JqueryUI Bootstrap](https://cdn.rawgit.com/arschmitz/jqueryui-bootstrap-adapter/v0.3.0/index.html)
   * [tagline](https://www.dokuwiki.org/config:tagline) is used in the [manifest](https://www.dokuwiki.org/devel:manifest) description
+  
+## Dev Note
+
+  * To beat the CSS cache, just open the file `local.php` and modify it

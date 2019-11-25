@@ -21,6 +21,9 @@ global $conf;
 $hasSidebar = page_findnearest($conf['sidebar']);
 $showSidebar = $hasSidebar && ($ACT == 'show');
 
+$hasRightSidebar = page_findnearest(tpl_getConf('sidebar_right'));
+$showRightSidebar = $hasRightSidebar && ($ACT == 'show');
+
 global $EVENT_HANDLER;
 $EVENT_HANDLER->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', null, 'tpl_bootie_meta_header');
 
@@ -79,7 +82,7 @@ include('tpl_header.php')
     trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
     ?>
 
-    <div class="row">
+    <div class="row mt-3" >
 
         <!-- SIDE BAR -->
         <?php if ($showSidebar): ?>
@@ -91,21 +94,13 @@ include('tpl_header.php')
 
                     <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
 
-                    <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>
-
                 </nav>
-
-                <!-- A trigger to show content on the sidebar part of the website -->
-                <?php
-                $data = "";// Mandatory
-                trigger_event('TPL_SIDEBAR_BOTTOM_OUTPUT', $data);
-                ?>
 
             </nav>
         <?php endif; ?>
 
 
-        <main role="main" class="col-md-<?php echo(($showSidebar) ? 9 : 16) ?> order-first">
+        <main role="main" class="col-md-<?php echo(($showSidebar) ? ($showRightSidebar?9:13) : ($showRightSidebar?12:16)) ?> order-first">
 
 
             <!-- You are here -->
@@ -131,16 +126,18 @@ include('tpl_header.php')
 
 
         <!-- SIDE BAR -->
-        <?php if ($showSidebar): ?>
+        <?php if ($showRightSidebar): ?>
+
             <nav role="complementary" class="col-md-4 order-xs-2 order-md-last">
+
                 <!-- Below data-spy="affix" data-offset-top="230"-->
                 <nav class="bs-docs-sidebar hidden-prints">
 
                     <?php tpl_flush() ?>
 
-                    <?php tpl_include_page($conf['sidebar'], 1, 1) ?>
+                    <?php tpl_include_page(tpl_getConf('sidebar_right'), 1, 1) ?>
 
-                    <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>
+<!--                    <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>-->
 
                 </nav>
 

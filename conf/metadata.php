@@ -14,7 +14,16 @@ $meta['header'] = array('string',
     "_pattern" => "/[a-zA-Z0-9]*/" // Only Accept alphanumeric characters
 );
 
-// Do we use CDN when posible
+$meta['sidebar_right'] = array('string',
+    "_caution" => "warning", // Show a warning
+    "_pattern" => "/[a-zA-Z0-9]*/" // Only Accept alphanumeric characters
+);
+
+
+
+
+// Do we use CDN when possible
 $meta['cdn'] = array('onoff');
+
 
 ?>
