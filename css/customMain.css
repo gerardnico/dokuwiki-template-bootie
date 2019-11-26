@@ -35,8 +35,8 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
     in order to get a correct navigation to the anchor
     See http://stackoverflow.com/questions/17181355/boostrap-using-fixed-navbar-and-anchor-tags-to-jump-to-sections
     */
-    /*padding: 95px 0 0;*/
-    /*margin: -80px 0 10px;*/
+    padding: 95px 0 0;
+    margin: -80px 0 10px;
 }
 
 /* The h2 in the extension manager is impacted by the  top-nav-bar fix for the content */
@@ -44,7 +44,6 @@ div.dokuwiki div#extension__manager h2 {
     padding-top: 0px;
     margin-top: 0px;
 }
-
 
 
 div.dokuwiki h1 {
@@ -60,6 +59,7 @@ div.dokuwiki div.level1 {
 div.dokuwiki h2 {
     font-size: 150%;
     margin-left: 0px;
+    margin-bottom: 1rem!important;
 }
 div.dokuwiki div.level2 {
     margin-left: 0px;
