@@ -100,7 +100,7 @@ include('tpl_header.php')
         <?php endif; ?>
 
 
-        <main role="main" class="col-md-<?php echo(($showSidebar) ? ($showRightSidebar?10:13) : ($showRightSidebar?13:16)) ?> order-first">
+        <main role="main" class="col-md-<?php echo(($showSidebar) ? ($showRightSidebar?10:13) : ($showRightSidebar?13:16)) ?> order-first pl-md-4 pr-md-4">
 
 
             <!-- You are here -->
