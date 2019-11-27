@@ -10,6 +10,6 @@
 $lang['footer'] = 'The name of the footer page to search';
 $lang['header'] = 'The name of the header page to search';
 $lang['sidebar_right'] = 'The name of the right sidebar page to search';
-$lang['cdn'] = 'Use a CDN when possible';
+$lang['cdn'] = 'Use a CDN for Javascript';
 
 ?>

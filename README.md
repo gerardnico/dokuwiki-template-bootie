@@ -11,7 +11,8 @@ Developed with PHP 7.2.5.
   
   * [Top Fixed Navbar](http://getbootstrap.com/components/#navbar-fixed-top)
   * `Footer` page called `footerbar`. Same functionality than for the [sidebar](https://www.dokuwiki.org/faq:sidebar#i_have_a_sidebar_functionality_how_can_i_create_or_edit_a_sidebar_now) but with a page called `footer`.
-  * `header` page called `headerbar`. Same functionality than for the [sidebar](https://www.dokuwiki.org/faq:sidebar#i_have_a_sidebar_functionality_how_can_i_create_or_edit_a_sidebar_now) but with a page called `footer`. 
+  * `header` page called `headerbar`. Same functionality than for the [sidebar](https://www.dokuwiki.org/faq:sidebar#i_have_a_sidebar_functionality_how_can_i_create_or_edit_a_sidebar_now) but with a page called `footer`.
+  * `Right` page called `rightbar`. Same functionality than for the [sidebar](https://www.dokuwiki.org/faq:sidebar#i_have_a_sidebar_functionality_how_can_i_create_or_edit_a_sidebar_now) but with a page called `footer`. 
   * Performance: All Javascript and CSS stylesheet are served asynchronously (defer for js and at the end for css)
   * Resources (Javascript or Stylesheet) served from CDN or locally
   * Load the third library via CDN or locally
@@ -26,8 +27,9 @@ Options:
 The configuration can be change with the [Configuration Manager Plugin](https://www.dokuwiki.org/plugin:config)
 
   * `footer`: the footer name page to search. Default to `footerbar`
-  * `header`: the footer name page to search. Default to `headerbar`
-  * `cdn`: if this configuration switch is on, you'll get the Javascript and Stylesheet whenever possible from a CDN
+  * `header`: the header name page to search. Default to `headerbar`
+  * `right`: the name page if the right side bar. Default to `rightbar`
+  * `cdn`: if this configuration switch is on, you'll get the Javascript whenever possible from a CDN
 
 Other configuration:
 
@@ -41,6 +43,12 @@ Other configuration:
     
 ## Release
 
+### Current
+
+  * Breaking changes: 
+     * the grid is now 1280 large on 16 columns which means that the bootstrap CSS is served locally
+     * the sidebar is now on the left side
+  * A new sidebar `rightbar` was introduced.
 
 ### 2019-06-14
 

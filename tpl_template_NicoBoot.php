@@ -270,7 +270,7 @@ function tpl_get_default_headers()
         // jquery must not be slim because the post is needed for qsearch
         $script['jquery'] = array(
             'src' => $localBaseJs . 'jquery-3.3.1.min.js',
-            'integrity' => "sha256-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT",
+            'integrity' => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
             'crossorigin' => "anonymous",
             'defer' => "true"
         );
@@ -318,24 +318,23 @@ function tpl_get_default_headers()
     }
 
 
-    if (!$useCdn) {
-        $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/';
-        $css['bootstrap'] = array(
-            'href' => $baseCss . 'bootstrap.min.css',
-//            'integrity' => "sha384-ZYfZnVukOuh/gRpU9uN+T9XwwRFJ9Y+0Ylk3zKvI184omb/HoOtQ0F8Iol7Nix7q",
-            'crossorigin' => "anonymous",
-            'rel' => "stylesheet",
+    $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/';
+    $css['bootstrap'] = array(
+        'href' => $baseCss . 'bootstrap.min.css',
+        'integrity' => "sha384-WofeZXrja72X1rGraqWbHKVwPLt+SwfllA94JDjCnZYo1fupUWtR7+/RB1LP/wBJ",
+        'crossorigin' => "anonymous",
+        'rel' => "stylesheet",
 
-        );
+    );
 
-    } else {
-        $css['bootstrap'] = array(
-            'href' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
-            'integrity' => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
-            'crossorigin' => "anonymous",
-            'rel' => "stylesheet",
-        );
-    };
+// For info
+//        $css['bootstrap'] = array(
+//            'href' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
+//            'integrity' => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
+//            'crossorigin' => "anonymous",
+//            'rel' => "stylesheet",
+//        );
+//
 
     return array(
         'script' => $script,
