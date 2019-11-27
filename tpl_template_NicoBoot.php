@@ -321,7 +321,7 @@ function tpl_get_default_headers()
     $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/';
     $css['bootstrap'] = array(
         'href' => $baseCss . 'bootstrap.min.css',
-        'integrity' => "sha384-WofeZXrja72X1rGraqWbHKVwPLt+SwfllA94JDjCnZYo1fupUWtR7+/RB1LP/wBJ",
+        'integrity' => "sha256-47g+qyxnVzl2TQ/BtVggVnrjFHJtjIiICF6wGAfWeYI=",
         'crossorigin' => "anonymous",
         'rel' => "stylesheet",
 
