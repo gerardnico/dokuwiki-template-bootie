@@ -48,7 +48,9 @@ Other configuration:
   * Breaking changes: 
      * the grid is now 1280 large on 16 columns which means that the bootstrap CSS is served locally
      * the sidebar is now on the left side
+     * the footer is now a bootstrap container
   * A new sidebar `rightbar` was introduced.
+  
 
 ### 2019-06-14
 
