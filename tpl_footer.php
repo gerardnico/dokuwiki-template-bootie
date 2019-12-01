@@ -20,8 +20,8 @@ if (!defined('DOKU_INC')) die();
     ?>
 
 
-    <div class="row justify-content-center">
-        <div class="col-16">
+    <div class="row p-3 justify-content-center">
+        <div class="col-16 text-center">
         <a href="https://gerardnico.com/dokuwiki/bootie" title="Designed by Nickeau">Bootie Template</a>
         designed by <a href="https://gerardnico.com/" title="Nickeau WebSite">Gerardnico</a> with the help of <a
             href="https://getbootstrap.com/" title="The Bootstrap">Bootstrap</a> and <a href="https://www.dokuwiki.org/template">DokuWiki</a>
