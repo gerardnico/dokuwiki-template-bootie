@@ -8,7 +8,7 @@ if (!defined('DOKU_INC')) die();
 ?>
 
 <!-- ********** FOOTER is a nav bar class********** -->
-<footer id="dokuwiki__footer" class="footer pad">
+<footer id="dokuwiki__footer" class="container">
 
 
     <?php
