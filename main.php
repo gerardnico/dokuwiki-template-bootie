@@ -120,7 +120,7 @@ include('tpl_header.php')
             <!-- But Firefox close the P because they must contain only inline element ???-->
             <?php tpl_content($prependTOC = false) ?>
 
-            <?php tpl_pageinfo() ?>
+            <?php //tpl_pageinfo() ?>
             <?php tpl_flush() ?>
         </main>
 
