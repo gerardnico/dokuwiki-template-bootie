@@ -4,7 +4,9 @@
 
 `Bootie` is a [Dokuwiki Template](https://www.dokuwiki.org/template:bootie) integrating the [bootstrap technology](http://getbootstrap.com/) developed for the site [gerardnico.com](http://gerardnico.com)
 
-Developed with PHP 7.2.5.
+Version:
+  * PHP version 7.2.5.
+  * Bootstrap 4. For the exact version, see the [js directory](./js/) 
 
 ## Features
 

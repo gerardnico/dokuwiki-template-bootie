@@ -45,6 +45,9 @@ if ($ID == "start") {
 
     <meta charset="utf-8"/>
 
+    <!-- Be sure to have only htts call -->
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content" />
+
     <title><?php echo $pageTitle ?> [<?php echo strip_tags($conf['title']) ?>]</title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
