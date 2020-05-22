@@ -27,18 +27,20 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
 
     $crumbs = array_reverse(breadcrumbs()); //setup crumb trace
 
+    echo '<nav aria-label="breadcrumb">';
 
     $last = count($crumbs);
     $i = 0;
-    echo '<ol class="breadcrumb justify-content-start m-0 p-0 pb-1">' . PHP_EOL;
-
     // Try to get the template custom breadcrumb
     $breadCrumb = tpl_getLang('breadcrumb');
     if ($breadCrumb == '') {
         // If not present for the language, get the default one
         $breadCrumb = $lang['breadcrumb'];
     }
-    echo '<span id="breadCrumbTitle">' . $breadCrumb . ':   </span>';
+
+    echo '<div id="breadcrumb">' . PHP_EOL;
+    echo '<span id="breadCrumbTitle" ">' . $breadCrumb . ':   </span>' . PHP_EOL;
+    echo '<ol class="breadcrumb justify-content-start m-0 p-0 pb-1">' . PHP_EOL;
 
     foreach ($crumbs as $id => $name) {
         $i++;
@@ -54,6 +56,8 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
 
     }
     echo '</ol>' . PHP_EOL;
+    echo '</div>' . PHP_EOL;
+    echo '</nav>' . PHP_EOL;
     return true;
 }
 
@@ -265,12 +269,12 @@ function tpl_get_default_headers()
 
     // JsScript (The data)
     $jsScripts = array();
-    $localBaseJs = DOKU_BASE . 'lib/tpl/bootie/js/'.$bootStrapRelease;
+    $localBaseJs = DOKU_BASE . 'lib/tpl/bootie/js/' . $bootStrapRelease;
     // jquery must not be slim because the post is needed for qsearch
     $jsScripts['jquery'] = array(
         'version' => '3.4.1',
         'src_cdn' => 'https://code.jquery.com/jquery-3.4.1.min.js',
-        'src_local' => $localBaseJs.'/jquery-3.4.1.min.js',
+        'src_local' => $localBaseJs . '/jquery-3.4.1.min.js',
         'integrity' => 'sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=',
         'crossorigin' => "anonymous",
         'defer' => "true"
@@ -278,15 +282,15 @@ function tpl_get_default_headers()
     $jsScripts['popper'] = array(
         'version' => '1.16.0',
         'src_cdn' => 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
-        'src_local' => $localBaseJs.'/popper.min.js',
+        'src_local' => $localBaseJs . '/popper.min.js',
         'integrity' => 'sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo',
         'crossorigin' => "anonymous",
         'defer' => "true"
     );
     $jsScripts['bootstrap'] = array(
         'version' => $bootStrapRelease,
-        'src_local' => $localBaseJs.'/bootstrap-'.$bootStrapRelease. '.min.js',
-        'src_cdn' => 'https://stackpath.bootstrapcdn.com/bootstrap/'.$bootStrapRelease.'/js/bootstrap.min.js',
+        'src_local' => $localBaseJs . '/bootstrap-' . $bootStrapRelease . '.min.js',
+        'src_cdn' => 'https://stackpath.bootstrapcdn.com/bootstrap/' . $bootStrapRelease . '/js/bootstrap.min.js',
         'integrity' => "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
         'crossorigin' => "anonymous",
         'defer' => "true"
@@ -311,10 +315,10 @@ function tpl_get_default_headers()
     }
 
 
-    $localBaseCss = DOKU_BASE . 'lib/tpl/bootie/css/'.$bootStrapRelease;
+    $localBaseCss = DOKU_BASE . 'lib/tpl/bootie/css/' . $bootStrapRelease;
     $css['bootstrap'] = array(
         'href' => $localBaseCss . '/bootstrap.min.css',
-        'integrity' => "sha256-EhkD779PJdtNFoMXFC8xiMD2q5Sirmh0RqqnW5G0Vtg=",
+        // 'integrity' => "sha256-EhkD779PJdtNFoMXFC8xiMD2q5Sirmh0RqqnW5G0Vtg=",
         'crossorigin' => "anonymous",
         'rel' => "stylesheet",
     );
@@ -340,8 +344,8 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
 
     $debug = tpl_getConf('debug');
     if ($debug) {
-        $request = 'Request: '.json_encode($_REQUEST);
-        print_r ('<!-- '.$request.'-->');
+        $request = 'Request: ' . json_encode($_REQUEST);
+        print_r('<!-- ' . $request . '-->');
     }
 
     global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
@@ -404,11 +408,11 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
                 // Add Jquery at the beginning
                 if (empty($_SERVER['REMOTE_USER'])) {
                     // We take the Jquery of Bootstrap
-                    $newScriptData = array_merge($bootstrapHeaders[$headerType],$newScriptData);
+                    $newScriptData = array_merge($bootstrapHeaders[$headerType], $newScriptData);
                 } else {
                     // Logged in
                     // We take the Jqueries of doku and we add Bootstrap
-                    $newScriptData = array_merge($jqueryDokuScripts,$newScriptData); // js
+                    $newScriptData = array_merge($jqueryDokuScripts, $newScriptData); // js
                     $newScriptData[] = $bootstrapHeaders[$headerType]['popper'];
                     $newScriptData[] = $bootstrapHeaders[$headerType]['bootstrap'];
                 }
@@ -421,11 +425,9 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
     }
 
     if ($debug) {
-        print_r ('<!-- '.'Script Header : '.json_encode($newHeaderTypes['script']).'-->');
+        print_r('<!-- ' . 'Script Header : ' . json_encode($newHeaderTypes['script']) . '-->');
     }
     $event->data = $newHeaderTypes;
-
-
 
 
 }

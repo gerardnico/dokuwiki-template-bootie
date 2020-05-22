@@ -30,21 +30,26 @@ body {
     width: 263px;
 }
 
-ol.breadcrumb {
+#breadcrumb {
+    display: flex;
+    font-size: 0.75rem;
+    color: #676464 !important;
+    flex-wrap: wrap;
     /*This will clip the left side in mobile device
     in order to have a fix height on the top bar*/
     overflow: hidden; /* Not working */
     height: 23px; /* The fix height does the trick as all element goes to the second line */
-    background-color: unset;
-    color: #9d9d9d;
-    display:flex;
-    flex-wrap: wrap;
-    font-size: 0.75rem;
 }
 
-ol.breadcrumb li a {
-    color: #9d9d9d;
+#breadcrumb ol {
+    background-color: unset;
 }
+
+#breadcrumb a {
+    color: #676464 !important;
+}
+
+
 
 /*!* The page tool drowpdown menu must go the the left because*/
 /*it's completely on the right*!*/
