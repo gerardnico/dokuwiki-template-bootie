@@ -11,10 +11,10 @@ if (!defined('DOKU_INC')) die();
 /**
  * Print the breadcrumbs trace with Bootstrap class
  *
- * @author Nicolas GERARD
- *
  * @param string $sep Separator between entries
  * @return bool
+ * @author Nicolas GERARD
+ *
  */
 function tpl_breadcrumbs_bootstrap($sep = '�')
 {
@@ -196,9 +196,6 @@ function tpl_searchform_bootie($ajax = true, $autocomplete = true)
  *
  * Like the action buttons but links
  *
- * @author Adrian Lang <mail@adrianlang.de>
- * @see    tpl_get_action
- *
  * @param string $type action command
  * @param string $pre prefix of link
  * @param string $suf suffix of link
@@ -206,6 +203,9 @@ function tpl_searchform_bootie($ajax = true, $autocomplete = true)
  * @param bool $return if true it returns html, otherwise prints
  * @param string $class the class to be added
  * @return bool|string html or false if no data, true if printed
+ * @see    tpl_get_action
+ *
+ * @author Adrian Lang <mail@adrianlang.de>
  */
 function tpl_actionlink_bootie($type, $class = '', $pre = '', $suf = '', $inner = '', $return = false)
 {
@@ -260,84 +260,68 @@ function tpl_actionlink_bootie($type, $class = '', $pre = '', $suf = '', $inner 
 function tpl_get_default_headers()
 {
 
+    // The version
+    $bootStrapRelease = '4.4.1';
+
+    // JsScript (The data)
+    $jsScripts = array();
+    $localBaseJs = DOKU_BASE . 'lib/tpl/bootie/js/'.$bootStrapRelease;
+    // jquery must not be slim because the post is needed for qsearch
+    $jsScripts['jquery'] = array(
+        'version' => '3.4.1',
+        'src_cdn' => 'https://code.jquery.com/jquery-3.4.1.min.js',
+        'src_local' => $localBaseJs.'/jquery-3.4.1.min.js',
+        'integrity' => 'sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=',
+        'crossorigin' => "anonymous",
+        'defer' => "true"
+    );
+    $jsScripts['popper'] = array(
+        'version' => '1.16.0',
+        'src_cdn' => 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
+        'src_local' => $localBaseJs.'/popper.min.js',
+        'integrity' => 'sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo',
+        'crossorigin' => "anonymous",
+        'defer' => "true"
+    );
+    $jsScripts['bootstrap'] = array(
+        'version' => $bootStrapRelease,
+        'src_local' => $localBaseJs.'/bootstrap-'.$bootStrapRelease. '.min.js',
+        'src_cdn' => 'https://stackpath.bootstrapcdn.com/bootstrap/'.$bootStrapRelease.'/js/bootstrap.min.js',
+        'integrity' => "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
+        'crossorigin' => "anonymous",
+        'defer' => "true"
+    );
+
+    // Build the returned Js script array
+    $returnJsScripts = array();
+    // if cdn
     $useCdn = tpl_getConf('cdn');
-    $script = array();
+    $srcKey = 'src_local';
     if (!$useCdn) {
-
-        $localBaseJs = DOKU_BASE . 'lib/tpl/bootie/js/';
-
-        // Other mode, we pick the Javascript of Dokuwiki
-        // jquery must not be slim because the post is needed for qsearch
-        $script['jquery'] = array(
-            'src' => $localBaseJs . 'jquery-3.3.1.min.js',
-            'integrity' => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
-            'crossorigin' => "anonymous",
-            'defer' => "true"
-        );
-
-
-        $script['popper'] = array(
-            'src' => $localBaseJs . 'popper-1.14.7.min.js',
-            'integrity' => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
-            'crossorigin' => "anonymous",
-            'defer' => "true"
-
-        );
-        $script['bootstrap'] = array(
-            'src' => $localBaseJs . 'bootstrap-4.3.1.min.js',
-            'integrity' => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",
-            'crossorigin' => "anonymous",
-            'defer' => "true"
-
-        );
-
-
-    } else {
-
-        // use a cdn
-        // jquery must not be slim because the post is needed for qsearch
-        $script['jquery'] = array(
-            'src' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js',
-            'integrity' => "sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=",
-            'crossorigin' => "anonymous",
-            'defer' => "true"
-        );
-        $script['popper'] = array(
-            'src' => 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
-            'integrity' => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
-            'crossorigin' => "anonymous",
-            'defer' => "true"
-        );
-        $script['bootstrap'] = array(
-            'src' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
-            'integrity' => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",
-            'crossorigin' => "anonymous",
-            'defer' => "true"
-        );
-
+        $srcKey = 'src_cdn';
+    }
+    foreach ($jsScripts as $key => $jsScript) {
+        $returnJsScripts[$key] =
+            array(
+                'src' => $jsScript[$srcKey],
+                'integrity' => $jsScript['integrity'],
+                'crossorigin' => $jsScript['crossorigin'],
+                'defer' => $jsScript['defer']
+            );
     }
 
 
-    $baseCss = DOKU_BASE . 'lib/tpl/bootie/css/v1/';
+    $localBaseCss = DOKU_BASE . 'lib/tpl/bootie/css/'.$bootStrapRelease;
     $css['bootstrap'] = array(
-        'href' => $baseCss . 'bootstrap.min.css',
-        'integrity' => "sha256-EhkD779PJdtNFoMXFC8xiMD2q5Sirmh0RqqnW5G0Vtg=",
+        'href' => $localBaseCss . '/bootstrap.min.css',
+        'integrity' => "sha256-47g+qyxnVzl2TQ/BtVggVnrjFHJtjIiICF6wGAfWeYI=",
         'crossorigin' => "anonymous",
         'rel' => "stylesheet",
-
     );
 
-// For info
-//        $css['bootstrap'] = array(
-//            'href' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
-//            'integrity' => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T",
-//            'crossorigin' => "anonymous",
-//            'rel' => "stylesheet",
-//        );
-//
 
     return array(
-        'script' => $script,
+        'script' => $returnJsScripts,
         'link' => $css
     );
 
@@ -353,6 +337,11 @@ function tpl_get_default_headers()
  */
 function tpl_bootie_meta_header(Doku_Event &$event, $param)
 {
+
+    // Search action are also called
+    if ($GLOBALS['ACT'] != "show") {
+        return;
+    }
 
     global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
     $DOKU_TPL_BOOTIE_PRELOAD_CSS = array();

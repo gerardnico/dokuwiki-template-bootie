@@ -42,7 +42,17 @@ Other configuration:
 ## Support
 
   * The [styling plugin](https://www.dokuwiki.org/plugin:styling) will complain that it doesn't found some Javascript. You can disable it
-    
+
+## Dev
+
+For developers
+
+  * The control of the headers is done via the registration of the event `TPL_METAHEADER_OUTPUT` that call the function `tpl_bootie_meta_header` found in the file [tpl_lib_bootie](./tpl_lib_bootie.php)
+  * The template is composed of:
+    * [main.php](./main.php): The main page. [Doc](https://www.dokuwiki.org/devel:templates:main.php)  
+    * [detail.php](./detail.php): The template to show the detail of an image. [Doc](https://www.dokuwiki.org/devel:templates:detail.php)
+    * [mediamanager.php](./mediamanager.php): The template to show the media manager.  
+
 ## Release
 
 ### Current
@@ -66,7 +76,7 @@ Other configuration:
 Performance release:
 
   * All Javascript and CSS stylesheet are served asynchronously (defer for js and at the end for css)
-  * The addition of the resources are now done via the call of a event system (TPL_METAHEADER_OUTPUT)
+  * The addition of the resources is now done via the call of a event system (TPL_METAHEADER_OUTPUT)
   * The dokuwiki jquery.php script is removed only in the SHOW act (when displaying a page) and is replaced by the bootstrap one.
   * The resources can be served locally in order to work without connection
 

@@ -8,7 +8,7 @@
  */
 
 //Library of template function
-require_once('tpl_template_NicoBoot.php');
+require_once('tpl_lib_bootie.php');
 
 if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
 header('X-UA-Compatible: IE=edge,chrome=1');

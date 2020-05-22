@@ -48,7 +48,7 @@ header('X-UA-Compatible: IE=edge,chrome=1');
 <div id="dokuwiki__site">
     <div id="dokuwiki__top" class="site <?php echo tpl_classes(); ?>">
 
-        <?php include_once('tpl_template_NicoBoot.php'); ?>
+        <?php include_once('tpl_lib_bootie.php'); ?>
         <?php include('tpl_header.php') ?>
         <!-- Bootstrap Container -->
         <div class="container">
