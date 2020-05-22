@@ -50,7 +50,10 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
         } else {
             print '<li class="breadcrumb-item">';
         }
-        tpl_link(wl($id), hsc($name), 'title="' . $id . '" style="width: 100%;"');
+        if ($name == "start"){
+            $name = "Home";
+        }
+        tpl_link(wl($id), hsc($name), 'title="' . $name . '" style="width: 100%;"');
 
         print '</li>' . PHP_EOL;
 
