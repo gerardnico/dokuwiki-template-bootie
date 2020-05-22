@@ -373,7 +373,9 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
                         case 'edit':
                             break;
                         case 'stylesheet':
-
+//                             if ( strpos($linkData['href'],'css.php')){
+//                                 continue;
+//                             }
                             // Take the stylesheet to load them at the end
                             $DOKU_TPL_BOOTIE_PRELOAD_CSS[] = $linkData;
 
