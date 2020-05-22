@@ -342,6 +342,7 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
     if ($debug) {
         $request = 'Request: '.json_encode($_REQUEST);
         print_r ('<!-- '.$request.'-->');
+        msg(json_encode($_REQUEST),0,true, true, $allow=MSG_ADMINS_ONLY);
     }
 
     // Search action are also called
