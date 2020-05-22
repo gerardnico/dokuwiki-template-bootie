@@ -338,8 +338,16 @@ function tpl_get_default_headers()
 function tpl_bootie_meta_header(Doku_Event &$event, $param)
 {
 
+    $debug = tpl_getConf('debug');
+    if ($debug) {
+        $request = 'Request: '.json_encode($_REQUEST);
+        print_r ('<!-- '.$request.'-->');
+    }
+
     // Search action are also called
-    if ($GLOBALS['ACT'] != "show") {
+    // when devtool is open it will trigger the download of source file map
+    // 404 will then redirect for a search
+    if ($GLOBALS['ACT'] == "search") {
         return;
     }
 
@@ -412,6 +420,8 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
         }
     }
     $event->data = $newHeaderTypes;
+
+
 
 
 }

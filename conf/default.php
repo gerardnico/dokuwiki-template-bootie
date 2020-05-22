@@ -9,5 +9,8 @@ $conf['sidebar_right'] = 'rightbar';
 // Use a cdn when possible
 $conf['cdn'] = false;
 
+// Print Debug statement
+$conf['debug'] = false;
+
 
 ?>

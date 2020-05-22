@@ -25,5 +25,8 @@ $meta['sidebar_right'] = array('string',
 // Do we use CDN when possible
 $meta['cdn'] = array('onoff');
 
+// Do we print debug statement
+$meta['debug'] = array('onoff');
+
 
 ?>
