@@ -344,13 +344,6 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
         print_r ('<!-- '.$request.'-->');
     }
 
-    // Search action are also called
-    // when devtool is open it will trigger the download of source file map
-    // 404 will then redirect for a search
-    if ($GLOBALS['ACT'] == "search") {
-        return;
-    }
-
     global $DOKU_TPL_BOOTIE_PRELOAD_CSS;
     $DOKU_TPL_BOOTIE_PRELOAD_CSS = array();
 
