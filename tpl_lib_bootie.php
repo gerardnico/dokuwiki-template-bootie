@@ -342,7 +342,6 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
     if ($debug) {
         $request = 'Request: '.json_encode($_REQUEST);
         print_r ('<!-- '.$request.'-->');
-        msg(json_encode($_REQUEST),0,true, true, $allow=MSG_ADMINS_ONLY);
     }
 
     // Search action are also called
@@ -395,30 +394,41 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
             case "script":
 
                 $newScriptData = array();
+                // A variable to hold the Jquery scripts
+                // jquery-migrate, jquery, jquery-ui ou jquery.php
+                // see https://www.dokuwiki.org/config:jquerycdn
+                $jqueryDokuScripts = array();
                 foreach ($headerData as $scriptData) {
                     $scriptData['defer'] = "true";
                     $pos = strpos($scriptData['src'], 'jquery');
                     if ($pos === false) {
                         $newScriptData[] = $scriptData;
                     } else {
-                        // This is the Jquery script
-                        if (empty($_SERVER['REMOTE_USER'])) {
-                            // https://www.dokuwiki.org/config:jquerycdn
-                            // We take the Jquery of Bootstrap
-                            $newScriptData = array_merge($newScriptData, $bootstrapHeaders[$headerType]);
-                        } else {
-                            // We take the Jquery of doku and we add Bootstrap
-                            $newScriptData[] = $scriptData; // js
-                            $newScriptData[] = $bootstrapHeaders[$headerType]['popper'];
-                            $newScriptData[] = $bootstrapHeaders[$headerType]['bootstrap'];
-                        }
+                        $jqueryDokuScripts[] = $scriptData;
                     }
                 }
+
+                // Add Jquery at the beginning
+                if (empty($_SERVER['REMOTE_USER'])) {
+                    // We take the Jquery of Bootstrap
+                    $newScriptData = array_merge($bootstrapHeaders[$headerType],$newScriptData);
+                } else {
+                    // Logged in
+                    // We take the Jqueries of doku and we add Bootstrap
+                    $newScriptData = array_merge($jqueryDokuScripts,$newScriptData); // js
+                    $newScriptData[] = $bootstrapHeaders[$headerType]['popper'];
+                    $newScriptData[] = $bootstrapHeaders[$headerType]['bootstrap'];
+                }
+
 
                 $newHeaderTypes[$headerType] = $newScriptData;
                 break;
 
         }
+    }
+
+    if ($debug) {
+        print_r ('<!-- '.'Script Header : '.json_encode($newHeaderTypes['script']).'-->');
     }
     $event->data = $newHeaderTypes;
 

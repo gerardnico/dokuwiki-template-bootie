@@ -47,11 +47,14 @@ Other configuration:
 
 For developers
 
-  * The control of the headers is done via the registration of the event `TPL_METAHEADER_OUTPUT` that call the function `tpl_bootie_meta_header` found in the file [tpl_lib_bootie](./tpl_lib_bootie.php)
-  * The template is composed of:
-    * [main.php](./main.php): The main page. [Doc](https://www.dokuwiki.org/devel:templates:main.php)  
-    * [detail.php](./detail.php): The template to show the detail of an image. [Doc](https://www.dokuwiki.org/devel:templates:detail.php)
-    * [mediamanager.php](./mediamanager.php): The template to show the media manager.  
+The function `tpl_bootie_meta_header` found in the file [tpl_lib_bootie](./tpl_lib_bootie.php)
+  * control the headers and is call via the registration of the event `TPL_METAHEADER_OUTPUT`   
+  * control tje Jquery version. Not logged in, Bootstrap, logged in Dokuwiki (with ui,..) 
+
+Ter info, the template file are:
+  * [main.php](./main.php): The main page. [Doc](https://www.dokuwiki.org/devel:templates:main.php)  
+  * [detail.php](./detail.php): The template to show the detail of an image. [Doc](https://www.dokuwiki.org/devel:templates:detail.php)
+  * [mediamanager.php](./mediamanager.php): The template to show the media manager.  
 
 ## Release
 
