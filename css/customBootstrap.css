@@ -34,7 +34,6 @@ body {
     display: flex;
     font-size: 0.75rem;
     color: #676464 !important;
-    flex-wrap: wrap;
     /*This will clip the left side in mobile device
     in order to have a fix height on the top bar*/
     overflow: hidden; /* Not working */
