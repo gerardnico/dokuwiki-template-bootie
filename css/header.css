@@ -1,17 +1,5 @@
-/* Customization of element */
+/*Header and level*/
 
-/* There is a padding from chrome one the UL of the list of search pagae */
-#qsearch__out > ul {
-    padding-left: 0px;
-}
-
-/* The result of the search is going at the top outside the windows */
-#qsearch__out {
-    top: 70%;
-}
-
-
-/*Header*/
 div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki h5 {
     background-color: inherit;
     /*text-decoration: underline; underline property cross hackes whereas border does not*/
@@ -39,11 +27,6 @@ div.dokuwiki h1, div.dokuwiki h2, div.dokuwiki h3, div.dokuwiki h4, div.dokuwiki
     margin: -80px 0 10px;
 }
 
-/* The h2 in the extension manager is impacted by the  top-nav-bar fix for the content */
-div.dokuwiki div#extension__manager h2 {
-    padding-top: 0px;
-    margin-top: 0px;
-}
 
 
 div.dokuwiki h1 {
@@ -94,26 +77,6 @@ div.dokuwiki div.level5 {
     margin-left: 45px;
 }
 
-/*Toc*/
-#dw__toc h3 {
-    margin-left: 0px; /* as h2 */
-    margin-bottom: 3px;
-}
-
-ul.toc {
-    padding-left: 15px;
-}
-
-/* No bullet */
-#dw__toc * ul {
-    list-style-type: none;
-}
-
-/* No minus on the header */
-#dw__toc > h3 > strong {
-    display: none;
-}
-
 
 /* No margin left on small screen */
 @media (min-width: 0px) and (max-width: 576px) {
@@ -122,9 +85,6 @@ ul.toc {
 		margin-left: 0px;
 	}
 
-	.dokuwiki blockquote.blockquote-plugin {
-		margin: 0.5em 0.5em;
-	}
 
 	div.dokuwiki h2 {
 		margin-left: 0px;

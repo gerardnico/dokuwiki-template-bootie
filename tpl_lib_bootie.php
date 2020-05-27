@@ -15,6 +15,7 @@ if (!defined('DOKU_INC')) die();
  * @return bool
  * @author Nicolas GERARD
  *
+ *
  */
 function tpl_breadcrumbs_bootstrap($sep = '�')
 {

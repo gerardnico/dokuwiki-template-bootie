@@ -1,0 +1,15 @@
+
+/* The fixed top bar */
+body {
+    padding-top: 6rem;
+}
+
+#navBarBrand {
+    font-size: 1.20rem;
+    font-weight: bold;
+}
+
+/* To center the logo */
+.navbar-header > a:nth-of-type(1) {
+    padding-top: 15px;
+}

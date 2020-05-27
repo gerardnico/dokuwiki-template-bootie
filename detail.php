@@ -27,17 +27,6 @@ header('X-UA-Compatible: IE=edge,chrome=1');
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
-    <!-- Bootstrap css customization -->
-    <!-- This Css is not in the framework of Dokuwiki because bootstrap requires a more recent jquery version than Dokuwiki -->
-    <!-- Therefore Bootstrap must be placed after the call of tpl_metaheaders-->
-    <!-- Version: -->
-    <!--    - Jquery: https://github.com/twbs/bootstrap/blob/v3.3.5/bower.json -->
-    <!--    - Doku: https://www.dokuwiki.org/devel:jqueryfaq -->
-    <link href="<?php echo tpl_getMediaFile(array("css/customBootstrap.css")); ?>" rel="stylesheet">
 
 </head>
 
