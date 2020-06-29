@@ -12,7 +12,7 @@ if (!defined('DOKU_INC')) die();
 
 
     <?php
-    $domain  =
+    $domain  = "https://combostrap.com";
     $footerPageName = tpl_getConf('footer');
     if (page_findnearest($footerPageName)) {
         tpl_flush();
