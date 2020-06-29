@@ -3,5 +3,5 @@ author   Nicolas Gerard
 email    gerardnico@gmail.com
 date     2019-06-14
 name     Bootie
-desc     Bootstrap based template developed for the website gerardnico.com
-url      https://www.dokuwiki.org/template:bootie
+desc     A Bootstrap based template - a component of the combostrap bundle.
+url      https://combostrap.com/bootie
