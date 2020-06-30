@@ -1,8 +1,9 @@
 
-/* The fixed top bar */
-body {
-    padding-top: 6rem;
-}
+/**
+ The fixed top bar is only for the main page
+ Padding top is in the mail file
+*/
+
 
 #navBarBrand {
     font-size: 1.20rem;

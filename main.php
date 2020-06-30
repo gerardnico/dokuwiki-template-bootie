@@ -1,11 +1,5 @@
 <?php
-/**
- * Gerardnico Template since 2015
- *
- * @link     http://gerardnico.com/dokuwiki/template
- * @author   Nicolas GERARD
- * @license  GPL 2 (http://www.gnu.org/licenses/gpl.html)
- */
+
 
 //Library of template function
 require_once('tpl_lib_bootie.php');
@@ -56,7 +50,7 @@ if ($ID == "start") {
 
 
 </head>
-<body role="document">
+<body role="document" style="padding-top: 6rem">
 
 
 <?php
