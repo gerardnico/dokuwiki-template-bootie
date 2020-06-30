@@ -52,7 +52,7 @@ if ($ID == "start") {
 
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-    <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
+    <?php echo tpl_bootie_favicon() ?>
 
 
 </head>

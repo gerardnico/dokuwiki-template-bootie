@@ -51,7 +51,7 @@ function tpl_breadcrumbs_bootstrap($sep = '�')
         } else {
             print '<li class="breadcrumb-item">';
         }
-        if ($name == "start"){
+        if ($name == "start") {
             $name = "Home";
         }
         tpl_link(wl($id), hsc($name), 'title="' . $name . '" style="width: 100%;"');
@@ -435,6 +435,37 @@ function tpl_bootie_meta_header(Doku_Event &$event, $param)
     }
     $event->data = $newHeaderTypes;
 
+
+}
+
+/**
+ * Returns the icon link as created by https://realfavicongenerator.net/
+ *
+ *
+ *
+ * @return string
+ */
+function tpl_bootie_favicon()
+{
+
+    $return = '';
+
+    // FavIcon.ico
+    $possibleLocation = array(':wiki:favicon.ico', ':favicon.ico', 'images/favicon.ico');
+    $return .= '<link rel="shortcut icon" href="' . tpl_getMediaFile($possibleLocation, $fallback = true) . '" />' . NL;
+
+    // Icon Png
+    $possibleLocation = array(':wiki:favicon-32x32.png', ':favicon-32x32.png', 'images/favicon-32x32.png');
+    $return .= '<link rel="icon" type="image/png" sizes="32x32" href="' . tpl_getMediaFile($possibleLocation, $fallback = true) . '">';
+
+    $possibleLocation = array(':wiki:favicon-16x16.png', ':favicon-16x16.png', 'images/favicon-16x16.png');
+    $return .= '<link rel="icon" type="image/png" sizes="16x16" href="' . tpl_getMediaFile($possibleLocation, $fallback = true) . '">';
+
+    // Apple touch icon
+    $possibleLocation = array(':wiki:apple-touch-icon.png', ':apple-touch-icon.png', 'images/apple-touch-icon.png');
+    $return .= '<link rel="apple-touch-icon" href="' . tpl_getMediaFile($possibleLocation, $fallback = true) . '" />' . NL;
+
+    return $return;
 
 }
 
