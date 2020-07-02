@@ -23,7 +23,10 @@ $EVENT_HANDLER->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', null, 'tpl_boot
 
 // There is no header in the Home page
 if ($ID == "start") {
-    $pageTitle = "Home";
+    $pageTitle = $conf['title'];
+    if ($conf['tagline']) {
+        $pageTitle .= ' - '.$conf['tagline'];
+    }
 } else {
     $pageTitle = tpl_pagetitle($ID, true);
 }
@@ -40,9 +43,9 @@ if ($ID == "start") {
     <meta charset="utf-8"/>
 
     <!-- Be sure to have only htts call -->
-    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content" />
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content"/>
 
-    <title><?php echo $pageTitle ?> [<?php echo strip_tags($conf['title']) ?>]</title>
+    <title><?php echo strip_tags($pageTitle) ?></title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
@@ -79,7 +82,7 @@ include('tpl_header.php')
     trigger_event('TPL_PAGE_TOP_OUTPUT', $data);
     ?>
 
-    <div class="row mt-3" >
+    <div class="row mt-3">
 
         <!-- SIDE BAR -->
         <?php if ($showSidebar): ?>
@@ -97,7 +100,8 @@ include('tpl_header.php')
         <?php endif; ?>
 
 
-        <main role="main" class="col-md-<?php echo(($showSidebar) ? ($showRightSidebar?10:13) : ($showRightSidebar?13:16)) ?> order-first pl-md-4 pr-md-4">
+        <main role="main"
+              class="col-md-<?php echo(($showSidebar) ? ($showRightSidebar ? 10 : 13) : ($showRightSidebar ? 13 : 16)) ?> order-first pl-md-4 pr-md-4">
 
 
             <!-- You are here -->
@@ -134,7 +138,7 @@ include('tpl_header.php')
 
                     <?php tpl_include_page(tpl_getConf('sidebar_right'), 1, 1) ?>
 
-<!--                    <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>-->
+                    <!--                    <a class="back-to-top" href="#dokuwiki__top"> Back to top </a>-->
 
                 </nav>
 
